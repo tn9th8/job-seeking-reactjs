@@ -84,6 +84,7 @@ const ModalCompany = (props: IProps) => {
 
     if (dataInit?._id) {
       //update
+      console.log("🚀 ~ submitCompany ~ dataInit:", dataInit);
       const res = await callUpdateCompany(
         dataInit._id,
         name,
