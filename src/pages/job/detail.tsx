@@ -84,7 +84,8 @@ const ClientJobDetailPage = (props: any) => {
                   &nbsp;{getLocationName(jobDetail.location)}
                 </div>
                 <div>
-                  <HistoryOutlined /> {dayjs(jobDetail.updatedAt).fromNow()}
+                  <HistoryOutlined />{" "}
+                  {dayjs(jobDetail.updatedAt).format("DD-MM-YYYY HH:mm:ss")}
                 </div>
                 <Divider />
                 {parse(jobDetail.description)}

@@ -18,6 +18,7 @@ import { UploadOutlined } from "@ant-design/icons";
 import type { UploadProps } from "antd";
 import { callCreateResume, callUploadSingleFile } from "@/config/api";
 import { useState } from "react";
+import vi_VN from "antd/locale/vi_VN";
 
 interface IProps {
   isModalOpen: boolean;
@@ -99,20 +100,20 @@ const ApplyModal = (props: IProps) => {
 
   return (
     <>
-      <Modal
-        title="Ứng Tuyển Job"
-        open={isModalOpen}
-        onOk={() => handleOkButton()}
-        onCancel={() => setIsModalOpen(false)}
-        maskClosable={false}
-        okText={isAuthenticated ? "Rải CV Nào " : "Đăng Nhập Nhanh"}
-        cancelButtonProps={{ style: { display: "none" } }}
-        destroyOnClose={true}
-      >
-        <Divider />
-        {isAuthenticated ? (
-          <div>
-            <ConfigProvider locale={enUS}>
+      <ConfigProvider locale={vi_VN}>
+        <Modal
+          title="Ứng Tuyển Job"
+          open={isModalOpen}
+          onOk={() => handleOkButton()}
+          onCancel={() => setIsModalOpen(false)}
+          maskClosable={false}
+          okText={isAuthenticated ? "Rải CV Nào " : "Đăng Nhập Nhanh"}
+          cancelButtonProps={{ style: { display: "none" } }}
+          destroyOnClose={true}
+        >
+          <Divider />
+          {isAuthenticated ? (
+            <div>
               <ProForm
                 submitter={{
                   render: () => <></>,
@@ -154,16 +155,16 @@ const ApplyModal = (props: IProps) => {
                   </Col>
                 </Row>
               </ProForm>
-            </ConfigProvider>
-          </div>
-        ) : (
-          <div>
-            Bạn chưa đăng nhập hệ thống. Vui lòng đăng nhập để có thể "Rải CV"
-            bạn nhé -.-
-          </div>
-        )}
-        <Divider />
-      </Modal>
+            </div>
+          ) : (
+            <div>
+              Bạn chưa đăng nhập hệ thống. Vui lòng đăng nhập để có thể "Rải CV"
+              bạn nhé -.-
+            </div>
+          )}
+          <Divider />
+        </Modal>
+      </ConfigProvider>
     </>
   );
 };
