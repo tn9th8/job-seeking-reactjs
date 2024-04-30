@@ -37,8 +37,6 @@ const ApplyModal = (props: IProps) => {
 
   const handleOkButton = async () => {
     if (!urlCV && isAuthenticated) {
-      console.log("🚀 ~ handleOkButton ~ isAuthenticated:", isAuthenticated);
-      console.log("🚀 ~ handleOkButton ~ urlCV:", urlCV);
       message.error("Vui lòng upload CV!");
       return;
     }
@@ -132,7 +130,7 @@ const ApplyModal = (props: IProps) => {
                       fieldProps={{
                         type: "email",
                       }}
-                      label="Email"
+                      label="Email Candidate"
                       name={"email"}
                       labelAlign="right"
                       disabled
