@@ -21,7 +21,6 @@ const ForgotAccountPage = () => {
 
   const onFinish = async (values: IUser) => {
     const { email } = values;
-    console.log("🚀 ~ onFinish ~ email:", email);
     setIsSubmit(true);
     const res = await callForgotPassword(email);
     // await callRegister(

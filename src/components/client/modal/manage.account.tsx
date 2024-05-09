@@ -17,9 +17,12 @@ import type { TabsProps } from "antd";
 import { IResume } from "@/types/backend";
 import React, { useState, useEffect } from "react";
 import {
+  callFetchCompany,
   callFetchResumeByUser,
   callGetSubscriberSkills,
+  callGetUserInfor,
   callUpdateSubscriber,
+  callUpdateUserInfor,
   callUpdateUserPassword,
 } from "@/config/api";
 import type { ColumnsType } from "antd/es/table";
@@ -31,6 +34,15 @@ import {
 } from "@ant-design/icons";
 import { SKILLS_LIST } from "@/config/utils";
 import { useAppSelector } from "@/redux/hooks";
+import {
+  ProForm,
+  ProFormDigit,
+  ProFormSelect,
+  ProFormText,
+} from "@ant-design/pro-components";
+import { DebounceSelect } from "@/components/admin/user/debouce.select";
+import { ICompanySelect } from "@/components/admin/user/modal.user";
+import { add } from "lodash";
 
 interface IProps {
   open: boolean;
@@ -113,22 +125,112 @@ const UserResume = (props: any) => {
 };
 
 const UserUpdateInfo = (props: any) => {
-  return <div>//todo</div>;
+  const [companies, setCompanies] = useState<ICompanySelect[]>([]);
+  const [roles, setRoles] = useState<ICompanySelect[]>([]);
+
+  const [form] = Form.useForm();
+  const isAuthenticated = useAppSelector(
+    (state) => state.account.isAuthenticated
+  );
+  const onStart = async () => {
+    if (isAuthenticated) {
+      const res = await callGetUserInfor();
+      if (res.data) {
+        form.setFieldsValue({
+          email: res.data.email,
+          name: res.data.name,
+          age: res.data.age,
+          gender: res.data.gender,
+          address: res.data.address,
+        });
+      }
+    }
+  };
+  useEffect(() => {
+    onStart();
+  }, []);
+  const onFinish = async (values: any) => {
+    const { name, age, gender, address } = values;
+    const res = await callUpdateUserInfor(name, age, gender, address);
+    if (res.data) {
+      message.success("Cập nhật thông tin thành công");
+      onStart();
+    } else {
+      notification.error({
+        message: "Có lỗi xảy ra",
+        description: res.message,
+      });
+    }
+  };
+  return (
+    <Form onFinish={onFinish} form={form}>
+      <Row gutter={16}>
+        <Col lg={12} md={12} sm={24} xs={24}>
+          <ProFormText
+            label="Email"
+            name="email"
+            disabled={true}
+            rules={[
+              { required: true, message: "Vui lòng không bỏ trống" },
+              { type: "email", message: "Vui lòng nhập email hợp lệ" },
+            ]}
+            placeholder="Email"
+          />
+        </Col>
+
+        <Col lg={12} md={12} sm={24} xs={24}>
+          <ProFormText
+            label="Tên hiển thị"
+            name="name"
+            rules={[{ required: true, message: "Vui lòng không bỏ trống" }]}
+            placeholder="Nhập tên hiển thị"
+          />
+        </Col>
+        <Col lg={12} md={12} sm={24} xs={24}>
+          <ProFormDigit
+            label="Tuổi"
+            name="age"
+            rules={[{ required: true, message: "Vui lòng không bỏ trống" }]}
+            placeholder="Nhập nhập tuổi"
+          />
+        </Col>
+        <Col lg={12} md={12} sm={24} xs={24}>
+          <ProFormSelect
+            name="gender"
+            label="Giới Tính"
+            valueEnum={{
+              MALE: "Nam",
+              FEMALE: "Nữ",
+              OTHER: "Khác",
+            }}
+            placeholder="Please select a gender"
+            rules={[{ required: true, message: "Vui lòng chọn giới tính!" }]}
+          />
+        </Col>
+
+        <Col lg={12} md={12} sm={24} xs={24}>
+          <ProFormText
+            label="Địa chỉ"
+            name="address"
+            rules={[{ required: true, message: "Vui lòng không bỏ trống" }]}
+            placeholder="Nhập địa chỉ"
+          />
+        </Col>
+        <Col span={24}>
+          <Button onClick={() => form.submit()}>Cập nhật</Button>
+        </Col>
+      </Row>
+    </Form>
+  );
 };
 
 const UserUpdatePassword = (props: any) => {
   const [form] = Form.useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const onFinish = async (values: any) => {
-    console.log("🚀 ~ onFinish ~ values:", values);
     const { currentPass, newPass } = values;
     const res = await callUpdateUserPassword(currentPass, newPass);
-    console.log("🚀 ~ onFinish ~ res:", res);
-    // const res = await callUpdateSubscriber({
-    //   email: user.email,
-    //   name: user.name,
-    //   skills: skills ? skills : [],
-    // });
+
     if (res.data) {
       message.success("Cập nhật mật khẩu thành công");
       form.resetFields();

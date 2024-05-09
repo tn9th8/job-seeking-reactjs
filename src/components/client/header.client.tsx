@@ -29,7 +29,6 @@ const Header = (props: any) => {
     (state) => state.account.isAuthenticated
   );
   const user = useAppSelector((state) => state.account.user);
-  console.log("🚀 ~ Header ~ user:", user);
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false);
 
   const [current, setCurrent] = useState("home");

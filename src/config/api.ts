@@ -93,10 +93,17 @@ export const callDeleteUser = (id: string) => {
 export const callFetchUser = (query: string) => {
     return axios.get<IBackendRes<IModelPaginate<IUser>>>(`/api/v1/users?${query}`);
 }
+export const callGetUserInfor = () => {
+    return axios.post<IBackendRes<IUser>>(`/api/v1/users/profile`);
+}
 
 export const callUpdateUserPassword = (currentPass: string, newPass: string) => {
-    return axios.post<IBackendRes<IUser>>('/api/v1/users/change-password', { currentPass, newPass })
+    return axios.patch<IBackendRes<IUser>>('/api/v1/users/change-password', { currentPass, newPass })
 }
+export const callUpdateUserInfor = (name: string, age: string, gender: string, address: string) => {
+    return axios.patch<IBackendRes<IUser>>('/api/v1/users/profile', { name, age, gender, address })
+}
+
 /**
  * 
 Module Job

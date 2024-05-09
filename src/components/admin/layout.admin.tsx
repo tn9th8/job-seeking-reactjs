@@ -31,7 +31,7 @@ const LayoutAdmin = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
   const user = useAppSelector((state) => state.account.user);
-  console.log("🚀 ~ LayoutAdmin ~ user:", user);
+
 
   const permissions = useAppSelector((state) => state.account.user.permissions);
   const [menuItems, setMenuItems] = useState<MenuProps["items"]>([]);
