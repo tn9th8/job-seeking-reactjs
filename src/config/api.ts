@@ -24,7 +24,9 @@ export const callRefreshToken = () => {
 export const callLogout = () => {
     return axios.post<IBackendRes<string>>('/api/v1/auth/logout')
 }
-
+export const callForgotPassword = (email: String) => {
+    return axios.post<IBackendRes<string>>('/api/v1/auth/forgot-password', { email })
+}
 /**
  * Upload single file
  */

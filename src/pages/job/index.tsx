@@ -7,6 +7,7 @@ import { useState } from "react";
 const ClientJobPage = (props: any) => {
   const [skill, setSkill] = useState([]);
   const [location, setLocation] = useState([]);
+  const [showCompany, setshowCompany] = useState<boolean>(true);
   return (
     <div className={styles["container"]} style={{ marginTop: 20 }}>
       <Row gutter={[20, 20]}>
@@ -16,6 +17,7 @@ const ClientJobPage = (props: any) => {
             setLocation={setLocation}
             skill={skill}
             location={location}
+            setshowCompany={setshowCompany}
           />
         </Col>
         <Divider />
