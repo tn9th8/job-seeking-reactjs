@@ -12,6 +12,7 @@ import {
   HeartTwoTone,
   BugOutlined,
   ScheduleOutlined,
+  AuditOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Dropdown, Space, message, Avatar, Button } from "antd";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -31,7 +32,6 @@ const LayoutAdmin = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
   const user = useAppSelector((state) => state.account.user);
-
 
   const permissions = useAppSelector((state) => state.account.user.permissions);
   const [menuItems, setMenuItems] = useState<MenuProps["items"]>([]);
@@ -126,6 +126,15 @@ const LayoutAdmin = () => {
               },
             ]
           : []),
+        ...(viewRole
+          ? [
+              {
+                label: <Link to="/admin/skill">Skill</Link>,
+                key: "/admin/skill",
+                icon: <AuditOutlined />,
+              },
+            ]
+          : []),
         ...(viewPermission
           ? [
               {
@@ -140,15 +149,6 @@ const LayoutAdmin = () => {
               {
                 label: <Link to="/admin/role">Role</Link>,
                 key: "/admin/role",
-                icon: <ExceptionOutlined />,
-              },
-            ]
-          : []),
-        ...(viewRole
-          ? [
-              {
-                label: <Link to="/admin/skill">Skill</Link>,
-                key: "/admin/skill",
                 icon: <ExceptionOutlined />,
               },
             ]

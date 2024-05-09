@@ -16,7 +16,7 @@ const DataTable = <
   dataSource,
   postData,
   pagination,
-  // sticky = { offsetHeader: 50 },
+  sticky = { offsetHeader: 50 },
   loading,
   rowKey = (record) => record.id,
   scroll,
@@ -39,7 +39,7 @@ const DataTable = <
         postData={postData}
         pagination={pagination}
         bordered
-        // sticky={sticky}
+        sticky={sticky}
         loading={loading}
         rowKey={rowKey}
         scroll={scroll}
