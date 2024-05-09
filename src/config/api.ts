@@ -94,6 +94,9 @@ export const callFetchUser = (query: string) => {
     return axios.get<IBackendRes<IModelPaginate<IUser>>>(`/api/v1/users?${query}`);
 }
 
+export const callUpdateUserPassword = (currentPass: string, newPass: string) => {
+    return axios.post<IBackendRes<IUser>>('/api/v1/users/change-password', { currentPass, newPass })
+}
 /**
  * 
 Module Job

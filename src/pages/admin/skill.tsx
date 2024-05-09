@@ -26,7 +26,7 @@ import ViewDetailResume from "@/components/admin/resume/view.resume";
 import { ALL_PERMISSIONS } from "@/config/permissions";
 import Access from "@/components/share/access";
 
-const ResumePage = () => {
+const SkillPage = () => {
   const tableRef = useRef<ActionType>();
 
   const isFetching = useAppSelector((state) => state.resume.isFetching);
@@ -211,4 +211,4 @@ const ResumePage = () => {
   );
 };
 
-export default ResumePage;
+export default SkillPage;

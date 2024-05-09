@@ -31,6 +31,7 @@ import ClientJobDetailPage from "./pages/job/detail";
 import ClientCompanyPage from "./pages/company";
 import ClientCompanyDetailPage from "./pages/company/detail";
 import ForgotAccountPage from "./pages/auth/forgotaccount";
+import SkillPage from "./pages/admin/skill";
 
 const LayoutClient = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -147,6 +148,14 @@ export default function App() {
           element: (
             <ProtectedRoute>
               <ResumePage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "skill",
+          element: (
+            <ProtectedRoute>
+              <SkillPage />
             </ProtectedRoute>
           ),
         },

@@ -20,6 +20,7 @@ import {
   callFetchResumeByUser,
   callGetSubscriberSkills,
   callUpdateSubscriber,
+  callUpdateUserPassword,
 } from "@/config/api";
 import type { ColumnsType } from "antd/es/table";
 import dayjs from "dayjs";
@@ -118,7 +119,26 @@ const UserUpdateInfo = (props: any) => {
 const UserUpdatePassword = (props: any) => {
   const [form] = Form.useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const onFinish = () => {};
+  const onFinish = async (values: any) => {
+    console.log("🚀 ~ onFinish ~ values:", values);
+    const { currentPass, newPass } = values;
+    const res = await callUpdateUserPassword(currentPass, newPass);
+    console.log("🚀 ~ onFinish ~ res:", res);
+    // const res = await callUpdateSubscriber({
+    //   email: user.email,
+    //   name: user.name,
+    //   skills: skills ? skills : [],
+    // });
+    if (res.data) {
+      message.success("Cập nhật mật khẩu thành công");
+      form.resetFields();
+    } else {
+      notification.error({
+        message: "Có lỗi xảy ra",
+        description: res.message,
+      });
+    }
+  };
   return (
     <Form onFinish={onFinish} form={form}>
       <Row gutter={[20, 5]}>
@@ -161,23 +181,6 @@ const UserUpdatePassword = (props: any) => {
         </Col>
       </Row>
     </Form>
-
-    //   <Space direction="horizontal">
-    //     <Input.Password
-    //       placeholder="input password"
-    //       visibilityToggle={{
-    //         visible: passwordVisible,
-    //         onVisibleChange: setPasswordVisible,
-    //       }}
-    //     />
-    //     <Button
-    //       style={{ width: 80 }}
-    //       onClick={() => setPasswordVisible((prevState) => !prevState)}
-    //     >
-    //       {passwordVisible ? "Hide" : "Show"}
-    //     </Button>
-    //   </Space>
-    // </Space>
   );
 };
 
