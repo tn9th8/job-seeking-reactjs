@@ -13,6 +13,7 @@ import {
   BugOutlined,
   ScheduleOutlined,
   AuditOutlined,
+  PaperClipOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Dropdown, Space, message, Avatar, Button } from "antd";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -78,8 +79,13 @@ const LayoutAdmin = () => {
       );
       const viewSkill = permissions.find(
         (item) =>
-          item.apiPath === ALL_PERMISSIONS.PERMISSIONS.GET_PAGINATE.apiPath &&
-          item.method === ALL_PERMISSIONS.USERS.GET_PAGINATE.method
+          item.apiPath === ALL_PERMISSIONS.SKILLS.GET_PAGINATE.apiPath &&
+          item.method === ALL_PERMISSIONS.SKILLS.GET_PAGINATE.method
+      );
+      const viewSubscriber = permissions.find(
+        (item) =>
+          item.apiPath === ALL_PERMISSIONS.SUBSCRIBERS.GET_PAGINATE.apiPath &&
+          item.method === ALL_PERMISSIONS.SUBSCRIBERS.GET_PAGINATE.method
       );
 
       const full = [
@@ -126,12 +132,21 @@ const LayoutAdmin = () => {
               },
             ]
           : []),
-        ...(viewRole
+        ...(viewSkill
           ? [
               {
                 label: <Link to="/admin/skill">Skill</Link>,
                 key: "/admin/skill",
                 icon: <AuditOutlined />,
+              },
+            ]
+          : []),
+        ...(viewRole
+          ? [
+              {
+                label: <Link to="/admin/subscriber">Subscriber</Link>,
+                key: "/admin/subscriber",
+                icon: <PaperClipOutlined />,
               },
             ]
           : []),

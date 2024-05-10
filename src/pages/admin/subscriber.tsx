@@ -28,7 +28,7 @@ import { fetchSkill } from "@/redux/slice/skillSlide";
 import ModalSkill from "@/components/admin/skill/modal.skill";
 import { callDeleteSkill } from "@/config/api";
 
-const SkillPage = () => {
+const SubscriberPage = () => {
   const tableRef = useRef<ActionType>();
 
   const isFetching = useAppSelector((state) => state.skill.isFetching);
@@ -83,7 +83,7 @@ const SkillPage = () => {
       width: 100,
       render: (_value, entity, _index, _action) => (
         <Space>
-          <Access permission={ALL_PERMISSIONS.SKILLS.UPDATE} hideChildren>
+          <Access permission={ALL_PERMISSIONS.SUBSCRIBERS.UPDATE} hideChildren>
             <EditOutlined
               style={{
                 fontSize: 20,
@@ -96,7 +96,7 @@ const SkillPage = () => {
               }}
             />
           </Access>
-          <Access permission={ALL_PERMISSIONS.SKILLS.DELETE} hideChildren>
+          <Access permission={ALL_PERMISSIONS.SUBSCRIBERS.DELETE} hideChildren>
             <Popconfirm
               placement="leftTop"
               title={"Xác nhận xóa skill"}
@@ -227,4 +227,4 @@ const SkillPage = () => {
   );
 };
 
-export default SkillPage;
+export default SubscriberPage;

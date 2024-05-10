@@ -41,6 +41,12 @@ export const ALL_PERMISSIONS = {
         UPDATE: { method: "PATCH", apiPath: '/api/v1/skills/:id', module: "SKILLS" },
         DELETE: { method: "DELETE", apiPath: '/api/v1/skills/:id', module: "SKILLS" },
     },
+    SUBSCRIBERS: {
+        GET_PAGINATE: { method: "GET", apiPath: '/api/v1/subscribers', module: "SUBSCRIBERS" },
+        CREATE: { method: "POST", apiPath: '/api/v1/subscribers', module: "SUBSCRIBERS" },
+        UPDATE: { method: "PATCH", apiPath: '/api/v1/subscribers/:id', module: "SUBSCRIBERS" },
+        DELETE: { method: "DELETE", apiPath: '/api/v1/subscribers/:id', module: "SUBSCRIBERS" },
+    },
 }
 
 export const ALL_MODULES = {

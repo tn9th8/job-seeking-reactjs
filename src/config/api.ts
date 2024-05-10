@@ -236,5 +236,15 @@ export const callFetchSubscriberById = (id: string) => {
 Module Skill
  */
 export const callFetchSkill = (query: string) => {
-    return axios.get<IBackendRes<IModelPaginate<ISkill>>>(`/api/v1/skills${query}`);
+    return axios.get<IBackendRes<IModelPaginate<ISkill>>>(`/api/v1/skills?${query}`);
+}
+
+export const callCreateSkill = (name: string, description: string) => {
+    return axios.post<IBackendRes<ISkill>>('/api/v1/skills', { name, description })
+}
+export const callUpdateSkill = (name: string, description: string, id: string) => {
+    return axios.patch<IBackendRes<ISkill>>(`/api/v1/skills/${id}`, { name, description })
+}
+export const callDeleteSkill = (id: string) => {
+    return axios.delete<IBackendRes<ISkill>>(`/api/v1/skills/${id}`);
 }

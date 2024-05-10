@@ -169,10 +169,9 @@ export interface ISubscribers {
     updatedAt?: string;
 }
 export interface ISkill {
-    _id?: string;
+    _id: string;
     name?: string;
-    email?: string;
-    description: string;
+    description?: string;
     createdBy?: string;
     isDeleted?: boolean;
     deletedAt?: boolean | null;
