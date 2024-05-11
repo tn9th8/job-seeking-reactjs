@@ -1,6 +1,6 @@
 import DataTable from "@/components/client/data-table";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { ISkill } from "@/types/backend";
+import { ISkill, ISubscribers } from "@/types/backend";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import {
   ActionType,
@@ -26,21 +26,22 @@ import { ALL_PERMISSIONS } from "@/config/permissions";
 import Access from "@/components/share/access";
 import { fetchSkill } from "@/redux/slice/skillSlide";
 import ModalSkill from "@/components/admin/skill/modal.skill";
-import { callDeleteSkill } from "@/config/api";
+import { callDeleteSkill, callDeleteSubscriber } from "@/config/api";
+import { fetchSubscriber } from "@/redux/slice/subscriberSlide";
 
 const SubscriberPage = () => {
   const tableRef = useRef<ActionType>();
 
-  const isFetching = useAppSelector((state) => state.skill.isFetching);
-  const meta = useAppSelector((state) => state.skill.meta);
-  const skills = useAppSelector((state) => state.skill.result);
+  const isFetching = useAppSelector((state) => state.subscriber.isFetching);
+  const meta = useAppSelector((state) => state.subscriber.meta);
+  const subscribers = useAppSelector((state) => state.subscriber.result);
   const dispatch = useAppDispatch();
   const reloadTable = () => {
     tableRef?.current?.reload();
   };
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [dataInit, setDataInit] = useState<null | ISkill>(null);
-  const columns: ProColumns<ISkill>[] = [
+  const [dataInit, setDataInit] = useState<null | ISubscribers>(null);
+  const columns: ProColumns<ISubscribers>[] = [
     {
       title: "Id",
       dataIndex: "_id",
@@ -49,13 +50,21 @@ const SubscriberPage = () => {
     },
     {
       title: "Name",
-      dataIndex: "name",
+      dataIndex: ["user", "name"],
+      // hideInSearch: true,
+      width: 210,
     },
     {
-      title: "Description",
-      dataIndex: "description",
-      hideInSearch: true,
+      title: "Email",
+      dataIndex: ["user", "email"],
+      // hideInSearch: true,
+      width: 210,
     },
+    // {
+    //   title: "Description",
+    //   dataIndex: "description",
+    //   hideInSearch: true,
+    // },
 
     {
       title: "CreatedAt",
@@ -83,26 +92,13 @@ const SubscriberPage = () => {
       width: 100,
       render: (_value, entity, _index, _action) => (
         <Space>
-          <Access permission={ALL_PERMISSIONS.SUBSCRIBERS.UPDATE} hideChildren>
-            <EditOutlined
-              style={{
-                fontSize: 20,
-                color: "#ffa500",
-              }}
-              type=""
-              onClick={() => {
-                setOpenModal(true);
-                setDataInit(entity);
-              }}
-            />
-          </Access>
           <Access permission={ALL_PERMISSIONS.SUBSCRIBERS.DELETE} hideChildren>
             <Popconfirm
               placement="leftTop"
-              title={"Xác nhận xóa skill"}
-              description={"Bạn có chắc chắn muốn xóa skill này ?"}
+              title={"Xác nhận xóa SUBSCRIBERS"}
+              description={"Bạn có chắc chắn muốn xóa SUBSCRIBERS này ?"}
               onConfirm={() => {
-                handleDeleteSkill(entity._id);
+                handleDeleteSubscriber(entity._id);
               }}
               okText="Xác nhận"
               cancelText="Hủy"
@@ -123,14 +119,15 @@ const SubscriberPage = () => {
   ];
 
   const buildQuery = (params: any, sort: any, filter: any) => {
-    const clone = { ...params };
-    if (clone.name) clone.name = `/${clone.name}/i`;
-    if (clone?.status?.length) {
-      clone.status = clone.status.join(",");
-    }
-
+    let clone = { ...params };
+    const user = clone.user;
+    const newClone = { ...clone, user: undefined };
+    clone = newClone;
     let temp = queryString.stringify(clone);
-
+    if (user) {
+      if (user.name) temp += `&user.name=/${user.name}/i`;
+      if (user.email) temp += `&user.email=/${user.email}/i`;
+    }
     let sortBy = "";
     if (sort && sort.status) {
       sortBy = sort.status === "ascend" ? "sort=status" : "sort=-status";
@@ -153,13 +150,15 @@ const SubscriberPage = () => {
     }
     // temp +=
     //   "&populate=companyId,jobId&fields=companyId._id, companyId.name, companyId.logo, jobId._id, jobId.name";
+
     return temp;
   };
-  const handleDeleteSkill = async (_id: string | undefined) => {
+
+  const handleDeleteSubscriber = async (_id: string | undefined) => {
     if (_id) {
-      const res = await callDeleteSkill(_id);
+      const res = await callDeleteSubscriber(_id);
       if (res && res.data) {
-        message.success("Xóa Skill thành công");
+        message.success("Xóa SUBSCRIBERS thành công");
         reloadTable();
       } else {
         notification.error({
@@ -171,17 +170,17 @@ const SubscriberPage = () => {
   };
   return (
     <div>
-      <Access permission={ALL_PERMISSIONS.SKILLS.GET_PAGINATE}>
-        <DataTable<ISkill>
+      <Access permission={ALL_PERMISSIONS.SUBSCRIBERS.GET_PAGINATE}>
+        <DataTable<ISubscribers>
           actionRef={tableRef}
-          headerTitle="Danh sách Skills"
+          headerTitle="Danh sách Subscriber"
           rowKey="_id"
           loading={isFetching}
           columns={columns}
-          dataSource={skills}
+          dataSource={subscribers}
           request={async (params, sort, filter): Promise<any> => {
             const query = buildQuery(params, sort, filter);
-            dispatch(fetchSkill({ query }));
+            dispatch(fetchSubscriber({ query }));
           }}
           scroll={{ x: true }}
           pagination={{
@@ -199,30 +198,15 @@ const SubscriberPage = () => {
             },
           }}
           rowSelection={false}
-          toolBarRender={(_action, _rows): any => {
-            return (
-              <Access permission={ALL_PERMISSIONS.SKILLS.CREATE} hideChildren>
-                <Button
-                  icon={<PlusOutlined />}
-                  type="primary"
-                  onClick={() => {
-                    setOpenModal(true);
-                  }}
-                >
-                  Thêm mới
-                </Button>
-              </Access>
-            );
-          }}
         />
       </Access>
-      <ModalSkill
+      {/* <ModalSkill
         openModal={openModal}
         setOpenModal={setOpenModal}
         reloadTable={reloadTable}
         dataInit={dataInit}
         setDataInit={setDataInit}
-      />
+      /> */}
     </div>
   );
 };

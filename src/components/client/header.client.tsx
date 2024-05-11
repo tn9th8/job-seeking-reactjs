@@ -127,6 +127,7 @@ const Header = (props: any) => {
                     selectedKeys={[current]}
                     mode="horizontal"
                     items={items}
+                    style={{ width: "700px" }}
                   />
                 </ConfigProvider>
                 <div className={styles["extra"]}>

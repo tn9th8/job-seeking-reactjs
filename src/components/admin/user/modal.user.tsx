@@ -35,6 +35,14 @@ const ModalUser = (props: IProps) => {
   const { openModal, setOpenModal, reloadTable, dataInit, setDataInit } = props;
   const [companies, setCompanies] = useState<ICompanySelect[]>([]);
   const [roles, setRoles] = useState<ICompanySelect[]>([]);
+  const [open, setOpen] = useState(false);
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
 
   const [form] = Form.useForm();
 

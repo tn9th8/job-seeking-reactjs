@@ -225,7 +225,7 @@ export const callDeleteSubscriber = (id: string) => {
 }
 
 export const callFetchSubscriber = (query: string) => {
-    return axios.get<IBackendRes<IModelPaginate<ISubscribers>>>(`/api/v1/subscribers?${query}`);
+    return axios.get<IBackendRes<IModelPaginate<ISubscribers>>>(`/api/v1/subscribers?${query}&populate=user&fields=user.name,user.email`);
 }
 
 export const callFetchSubscriberById = (id: string) => {
