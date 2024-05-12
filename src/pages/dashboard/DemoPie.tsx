@@ -3,13 +3,21 @@ import ReactDOM from "react-dom";
 import { Pie } from "@ant-design/plots";
 
 const DemoPie = () => {
+  // const data = [
+  //   { type: "1a", value: 7 },
+  //   { type: "2b", value: 25 },
+  //   { type: "3c", value: 18 },
+  //   { type: "4d", value: 15 },
+  //   { type: "5e", value: 10 },
+  //   { type: "6f", value: 5 },
+  // ];
   const data = [
-    { type: "1a", value: 7 },
-    { type: "2b", value: 25 },
-    { type: "3c", value: 18 },
-    { type: "4d", value: 15 },
-    { type: "5e", value: 10 },
-    { type: "6f", value: 5 },
+    { type: "React.JS", value: 8 },
+    { type: "Nest.JS", value: 7 },
+    { type: "Frontend", value: 5 },
+    { type: "Vue.JS", value: 4 },
+    { type: "Java", value: 4 },
+    { type: "others", value: 14 },
   ];
   const config = {
     data,

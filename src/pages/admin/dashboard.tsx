@@ -2,37 +2,57 @@ import { Card, Col, Row, Statistic } from "antd";
 import CountUp from "react-countup";
 import Page from "../dashboard/Page";
 import DemoPie from "../dashboard/DemoPie";
+import { useEffect, useState } from "react";
+import { callFetchSummary } from "@/config/api";
 
 const DashboardPage = () => {
+  const [dataCardDashBoard, setdataCardDashBoard] = useState<any>();
+  const [dataPie, setdataPie] = useState<any>();
   const formatter = (value: number | string) => {
     return <CountUp end={Number(value)} separator="," />;
   };
+  const fetchDashBoardData = async () => {
+    const res = await callFetchSummary();
+    if (res && res.data) {
+      setdataCardDashBoard(res.data);
+    }
+  };
+  const fetchDashBoardDataPie = async () => {
+    const res = await callFetchSummary();
+    if (res && res.data) {
+      setdataPie(res.data);
+    }
+  };
+  useEffect(() => {
+    fetchDashBoardData();
+    return () => {};
+  }, []);
 
   return (
     <Row gutter={[20, 20]}>
       <Col span={24} md={8}>
-        <Card title="Card title" bordered={false}>
+        <Card title={dataCardDashBoard?.jobsHiring?.message} bordered={false}>
           <Statistic
-            title="Active Users"
-            value={112893}
+            title="Số Lượng"
+            value={dataCardDashBoard?.jobsHiring?.number}
             formatter={formatter}
           />
         </Card>
       </Col>
       <Col span={24} md={8}>
-        <Card title="Card title" bordered={false}>
+        <Card title={dataCardDashBoard?.jobsToday.message} bordered={false}>
           <Statistic
-            title="Active Users"
-            value={112893}
+            title="Số Lượng"
+            value={dataCardDashBoard?.jobsToday?.number}
             formatter={formatter}
           />
         </Card>
       </Col>
       <Col span={24} md={8}>
-        <Card title="Card title" bordered={false}>
+        <Card title={dataCardDashBoard?.resumesMonth.message} bordered={false}>
           <Statistic
-            title="Active Users"
-            value={112893}
+            title="Số Lượng"
+            value={dataCardDashBoard?.resumesMonth?.number}
             formatter={formatter}
           />
         </Card>

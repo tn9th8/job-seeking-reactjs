@@ -260,3 +260,10 @@ export const callUpdateSkill = (name: string, description: string, id: string) =
 export const callDeleteSkill = (id: string) => {
     return axios.delete<IBackendRes<ISkill>>(`/api/v1/skills/${id}`);
 }
+/**
+ * 
+Module Resume
+ */
+export const callFetchSummary = () => {
+    return axios.get('/api/v1/dashboard/jobs');
+}
