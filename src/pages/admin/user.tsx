@@ -58,7 +58,7 @@ const UserPage = () => {
               setOpenViewDetail(true);
               //   console.log("🚀 ~ UserPage ~ record:", record);
               setDataInit(record);
-              console.log("🚀 ~ UserPage ~ dataInit:", dataInit);
+              // console.log("🚀 ~ UserPage ~ dataInit:", dataInit);
             }}
           >
             {record._id}
@@ -114,7 +114,6 @@ const UserPage = () => {
               onClick={() => {
                 setOpenModal(true);
                 setDataInit(entity);
-                console.log("🚀 ~ UserPage ~ entity:", entity);
               }}
             />
           </Access>

@@ -28,6 +28,7 @@ import { fetchSkill } from "@/redux/slice/skillSlide";
 import ModalSkill from "@/components/admin/skill/modal.skill";
 import { callDeleteSkill, callDeleteSubscriber } from "@/config/api";
 import { fetchSubscriber } from "@/redux/slice/subscriberSlide";
+import ViewDetailSubscriber from "@/components/admin/subscriber/view.subscriber";
 
 const SubscriberPage = () => {
   const tableRef = useRef<ActionType>();
@@ -39,7 +40,7 @@ const SubscriberPage = () => {
   const reloadTable = () => {
     tableRef?.current?.reload();
   };
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openViewDetail, setOpenViewDetail] = useState<boolean>(false);
   const [dataInit, setDataInit] = useState<null | ISubscribers>(null);
   const columns: ProColumns<ISubscribers>[] = [
     {
@@ -47,6 +48,21 @@ const SubscriberPage = () => {
       dataIndex: "_id",
       width: 210,
       hideInSearch: true,
+      render: (text, record, index, action) => {
+        return (
+          <a
+            href="#"
+            onClick={() => {
+              setOpenViewDetail(true);
+              //   console.log("🚀 ~ UserPage ~ record:", record);
+              setDataInit(record);
+              // console.log("🚀 ~ UserPage ~ dataInit:", dataInit);
+            }}
+          >
+            {record._id}
+          </a>
+        );
+      },
     },
     {
       title: "Name",
@@ -207,6 +223,12 @@ const SubscriberPage = () => {
         dataInit={dataInit}
         setDataInit={setDataInit}
       /> */}
+      <ViewDetailSubscriber
+        open={openViewDetail}
+        onClose={setOpenViewDetail}
+        dataInit={dataInit}
+        setDataInit={setDataInit}
+      />
     </div>
   );
 };

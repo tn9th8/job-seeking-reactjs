@@ -83,6 +83,7 @@ export const callCreateUser = (user: IUser) => {
 }
 
 export const callUpdateUser = (user: IUser) => {
+
     return axios.patch<IBackendRes<IUser>>(`/api/v1/users`, { ...user })
 }
 
@@ -237,6 +238,11 @@ Module Skill
  */
 export const callFetchSkill = (query: string) => {
     return axios.get<IBackendRes<IModelPaginate<ISkill>>>(`/api/v1/skills?${query}`);
+}
+export const callFetchSkillList = () => {
+    return axios.post<IBackendRes<{
+      name: any; label: string, value: string 
+}[]>>(`api/v1/skills/list`);
 }
 
 export const callCreateSkill = (name: string, description: string) => {

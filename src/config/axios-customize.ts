@@ -42,6 +42,7 @@ instance.interceptors.request.use(function (config) {
  * Handle all responses. It is possible to add handlers
  * for requests, but it is omitted here for brevity.
  */
+
 instance.interceptors.response.use(
     (res) => res.data,
     async (error) => {

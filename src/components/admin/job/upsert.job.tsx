@@ -20,13 +20,18 @@ import {
   ProFormText,
 } from "@ant-design/pro-components";
 import styles from "styles/admin.module.scss";
-import { LOCATION_LIST, SKILLS_LIST } from "@/config/utils";
+import {
+  LOCATION_LIST,
+  changeEnumListSkill,
+  fetchListSkill,
+} from "@/config/utils";
 import { ICompanySelect } from "../user/modal.user";
 import { useState, useEffect } from "react";
 import {
   callCreateJob,
   callFetchCompany,
   callFetchJobById,
+  callFetchSkillList,
   callUpdateJob,
 } from "@/config/api";
 import ReactQuill from "react-quill";
@@ -38,10 +43,10 @@ import { IJob } from "@/types/backend";
 import vi_VN from "antd/locale/vi_VN";
 const ViewUpsertJob = (props: any) => {
   const [companies, setCompanies] = useState<ICompanySelect[]>([]);
-
   const navigate = useNavigate();
   const [value, setValue] = useState<string>("");
-
+  const [listSkill, setListSkill] = useState<any>();
+  console.log("🚀 ~ ViewUpsertJob ~ listSkill:", listSkill);
   let location = useLocation();
   let params = new URLSearchParams(location.search);
   const id = params?.get("id"); // job id
@@ -79,6 +84,17 @@ const ViewUpsertJob = (props: any) => {
     init();
     return () => form.resetFields();
   }, [id]);
+
+  useEffect(() => {
+    fetchListSkill().then((result) => {
+      if (result) {
+        const newResult = setListSkill(changeEnumListSkill(result as any));
+        return newResult;
+      }
+      return result;
+    });
+    return () => {};
+  }, []);
 
   // Usage of DebounceSelect
   async function fetchCompanyList(name: string): Promise<ICompanySelect[]> {
@@ -218,7 +234,7 @@ const ViewUpsertJob = (props: any) => {
                 <ProFormSelect
                   name="skills"
                   label="Kỹ năng yêu cầu"
-                  options={SKILLS_LIST}
+                  valueEnum={listSkill}
                   placeholder="Please select a skill"
                   rules={[
                     { required: true, message: "Vui lòng chọn kỹ năng!" },

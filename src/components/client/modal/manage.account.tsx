@@ -32,7 +32,6 @@ import {
   EyeTwoTone,
   MonitorOutlined,
 } from "@ant-design/icons";
-import { SKILLS_LIST } from "@/config/utils";
 import { useAppSelector } from "@/redux/hooks";
 import {
   ProForm,
@@ -43,6 +42,7 @@ import {
 import { DebounceSelect } from "@/components/admin/user/debouce.select";
 import { ICompanySelect } from "@/components/admin/user/modal.user";
 import { add } from "lodash";
+import { fetchListSkill } from "@/config/utils";
 
 interface IProps {
   open: boolean;
@@ -289,7 +289,7 @@ const UserUpdatePassword = (props: any) => {
 const JobByEmail = (props: any) => {
   const [form] = Form.useForm();
   const user = useAppSelector((state) => state.account.user);
-
+  const [listSkill, setListSkill] = useState<any>();
   useEffect(() => {
     const init = async () => {
       const res = await callGetSubscriberSkills();
@@ -316,7 +316,23 @@ const JobByEmail = (props: any) => {
       });
     }
   };
+  useEffect(() => {
+    fetchListSkill().then((result) => {
+      if (result) {
+        const newResult = result.map((item) => {
+          return {
+            value: item.value,
+            label: item.name,
+          };
+        });
+        setListSkill(newResult);
 
+        return newResult;
+      }
+      return result;
+    });
+    return () => {};
+  }, []);
   return (
     <>
       <Form onFinish={onFinish} form={form}>
@@ -340,7 +356,7 @@ const JobByEmail = (props: any) => {
                   </>
                 }
                 optionLabelProp="label"
-                options={SKILLS_LIST}
+                options={listSkill}
               />
             </Form.Item>
           </Col>

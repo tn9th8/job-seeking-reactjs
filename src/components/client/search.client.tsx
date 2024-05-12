@@ -1,16 +1,37 @@
 import { Button, Col, Form, Row, Select } from "antd";
 import { EnvironmentOutlined, MonitorOutlined } from "@ant-design/icons";
-import { LOCATION_LIST, SKILLS_LIST } from "@/config/utils";
+import {
+  LOCATION_LIST,
+  changeEnumListSkill,
+  fetchListSkill,
+} from "@/config/utils";
 import { ProForm } from "@ant-design/pro-components";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const SearchClient = (props: any) => {
-  const optionsSkills = SKILLS_LIST;
+  const [listSkill, setListSkill] = useState<any>();
   const optionsLocations = LOCATION_LIST;
   const [form] = Form.useForm();
   const { setLocation, setSkill, skill, location, setshowCompany } = props;
   const navigate = useNavigate();
+  useEffect(() => {
+    fetchListSkill().then((result) => {
+      if (result) {
+        const newResult = result.map((item) => {
+          return {
+            value: item.value,
+            label: item.name,
+          };
+        });
+        setListSkill(newResult);
 
+        return newResult;
+      }
+      return result;
+    });
+    return () => {};
+  }, []);
   const onFinish = async (values: any) => {
     setshowCompany(false);
     setLocation(form.getFieldValue(["location"]));
@@ -42,7 +63,7 @@ const SearchClient = (props: any) => {
                 </>
               }
               optionLabelProp="label"
-              options={optionsSkills}
+              options={listSkill}
             />
           </ProForm.Item>
         </Col>
