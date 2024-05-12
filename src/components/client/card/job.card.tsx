@@ -1,5 +1,11 @@
-import { callFetchJob } from "@/config/api";
-import { LOCATION_LIST, convertSlug, getLocationName } from "@/config/utils";
+import { callFetchJob, callFetchJobClient } from "@/config/api";
+import {
+  LOCATION_LIST,
+  changeEnumListSkill,
+  convertSlug,
+  fetchListSkill,
+  getLocationName,
+} from "@/config/utils";
 import { IJob } from "@/types/backend";
 import { EnvironmentOutlined, ThunderboltOutlined } from "@ant-design/icons";
 import { Card, Col, ConfigProvider, Empty, Pagination, Row, Spin } from "antd";
@@ -29,6 +35,7 @@ const JobCard = (props: IProps) => {
   const [total, setTotal] = useState(0);
   const [filter, setFilter] = useState("");
   const [sortQuery, setSortQuery] = useState("sort=-updatedAt");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,23 +51,21 @@ const JobCard = (props: IProps) => {
     if (sortQuery) {
       query += `&${sortQuery}`;
     }
-    if (skill?.length && skill.length > 0) {
-      query += `&skills=`;
-      let skillQuery = ``;
-      skill.forEach((s) => {
-        skillQuery += s + ",";
-      });
-      query += skillQuery;
-    }
+
     if (location?.length && location.length > 0) {
       query += `&location=`;
-      let skillQuery = ``;
+      let Query = ``;
       location.forEach((s) => {
-        skillQuery += s + ",";
+        Query += s + ",";
       });
-      query += skillQuery;
+      query += Query;
     }
-    const res = await callFetchJob(query);
+    let res;
+    if (skill && skill?.length > 0) {
+      res = await callFetchJobClient(query, { skills: skill });
+    } else {
+      res = await callFetchJob(query);
+    }
     if (res && res.data) {
       setDisplayJob(res.data.result);
       setTotal(res.data.meta.total);

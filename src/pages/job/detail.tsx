@@ -10,7 +10,11 @@ import {
   EnvironmentOutlined,
   HistoryOutlined,
 } from "@ant-design/icons";
-import { getLocationName } from "@/config/utils";
+import {
+  changeEnumListSkill,
+  fetchListSkill,
+  getLocationName,
+} from "@/config/utils";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import ApplyModal from "@/components/client/modal/apply.modal";
@@ -39,6 +43,17 @@ const ClientJobDetailPage = (props: any) => {
     };
     init();
   }, [id]);
+  const [listSkill, setListSkill] = useState<any>();
+  useEffect(() => {
+    fetchListSkill().then((result) => {
+      if (result) {
+        const newResult = setListSkill(changeEnumListSkill(result as any));
+        return newResult;
+      }
+      return result;
+    });
+    return () => {};
+  }, []);
 
   return (
     <div className={`${styles["container"]} ${styles["detail-job-section"]}`}>
@@ -63,7 +78,7 @@ const ClientJobDetailPage = (props: any) => {
                   {jobDetail?.skills?.map((item, index) => {
                     return (
                       <Tag key={`${index}-key`} color="gold">
-                        {item}
+                        {listSkill[item]}
                       </Tag>
                     );
                   })}

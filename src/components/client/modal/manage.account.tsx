@@ -19,7 +19,7 @@ import React, { useState, useEffect } from "react";
 import {
   callFetchCompany,
   callFetchResumeByUser,
-  callGetSubscriberSkills,
+  callGetSubscriberByUser,
   callGetUserInfor,
   callUpdateSubscriber,
   callUpdateUserInfor,
@@ -290,11 +290,20 @@ const JobByEmail = (props: any) => {
   const [form] = Form.useForm();
   const user = useAppSelector((state) => state.account.user);
   const [listSkill, setListSkill] = useState<any>();
+  const [skillSubscriber, setSkillSubscriber] = useState<any>();
   useEffect(() => {
     const init = async () => {
-      const res = await callGetSubscriberSkills();
+      const res = await callGetSubscriberByUser();
       if (res && res.data) {
         form.setFieldValue("skills", res.data.skills);
+        const data: { _id: string; name: string }[] = res.data.skills as any;
+        const transformedData = data.map((item) => {
+          return {
+            value: item._id,
+            name: item.name,
+          };
+        });
+        form.setFieldValue("skills", transformedData);
       }
     };
     init();
@@ -303,10 +312,9 @@ const JobByEmail = (props: any) => {
   const onFinish = async (values: any) => {
     const { skills } = values;
     const res = await callUpdateSubscriber({
-      email: user.email,
-      name: user.name,
       skills: skills ? skills : [],
     });
+
     if (res.data) {
       message.success("Cập nhật thông tin thành công");
     } else {
@@ -316,6 +324,7 @@ const JobByEmail = (props: any) => {
       });
     }
   };
+
   useEffect(() => {
     fetchListSkill().then((result) => {
       if (result) {

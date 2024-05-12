@@ -47,6 +47,12 @@ export const ALL_PERMISSIONS = {
         UPDATE: { method: "PATCH", apiPath: '/api/v1/subscribers/:id', module: "SUBSCRIBERS" },
         DELETE: { method: "DELETE", apiPath: '/api/v1/subscribers/:id', module: "SUBSCRIBERS" },
     },
+    DASHBOARD: {
+        COUNT_JOBS_TODAY: { method: "GET", apiPath: '/api/v1/dashboard/job/today', module: "DASHBOARD" },
+        CREATE: { method: "POST", apiPath: '/api/v1/subscribers', module: "SUBSCRIBERS" },
+        UPDATE: { method: "PATCH", apiPath: '/api/v1/subscribers/:id', module: "SUBSCRIBERS" },
+        DELETE: { method: "DELETE", apiPath: '/api/v1/subscribers/:id', module: "SUBSCRIBERS" },
+    },
 }
 
 export const ALL_MODULES = {
@@ -59,5 +65,6 @@ export const ALL_MODULES = {
     ROLES: 'ROLES',
     USERS: 'USERS',
     SUBSCRIBERS: 'SUBSCRIBERS',
-    SKILLS: 'SKILLS'
+    SKILLS: 'SKILLS',
+    DASHBOARD: 'DASHBOARD'
 }

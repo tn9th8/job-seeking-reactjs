@@ -124,6 +124,9 @@ export const callDeleteJob = (id: string) => {
 export const callFetchJob = (query: string) => {
     return axios.get<IBackendRes<IModelPaginate<IJob>>>(`/api/v1/jobs?${query}`);
 }
+export const callFetchJobClient = (query: string, job: any) => {
+    return axios.post(`/api/v1/jobs/new?${query}`, { ...job });
+}
 
 export const callFetchJobById = (id: string) => {
     return axios.get<IBackendRes<IJob>>(`/api/v1/jobs/${id}`);
@@ -212,10 +215,13 @@ Module Subscribers
 export const callCreateSubscriber = (subs: ISubscribers) => {
     return axios.post<IBackendRes<ISubscribers>>('/api/v1/subscribers', { ...subs })
 }
-
-export const callGetSubscriberSkills = () => {
-    return axios.post<IBackendRes<ISubscribers>>('/api/v1/subscribers/skills')
+export const callGetSubscriberByUser = () => {
+    return axios.post<IBackendRes<ISubscribers>>('/api/v1/subscribers/user')
 }
+
+// export const callGetSubscriberSkills = () => {
+//     return axios.post<IBackendRes<ISubscribers>>('/api/v1/subscribers/skills')
+// }
 
 export const callUpdateSubscriber = (subs: ISubscribers) => {
     return axios.patch<IBackendRes<ISubscribers>>(`/api/v1/subscribers`, { ...subs })
@@ -241,8 +247,8 @@ export const callFetchSkill = (query: string) => {
 }
 export const callFetchSkillList = () => {
     return axios.post<IBackendRes<{
-      name: any; label: string, value: string 
-}[]>>(`api/v1/skills/list`);
+        name: any; label: string, value: string
+    }[]>>(`api/v1/skills/list`);
 }
 
 export const callCreateSkill = (name: string, description: string) => {

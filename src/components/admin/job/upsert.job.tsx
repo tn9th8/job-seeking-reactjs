@@ -46,7 +46,6 @@ const ViewUpsertJob = (props: any) => {
   const navigate = useNavigate();
   const [value, setValue] = useState<string>("");
   const [listSkill, setListSkill] = useState<any>();
-  console.log("🚀 ~ ViewUpsertJob ~ listSkill:", listSkill);
   let location = useLocation();
   let params = new URLSearchParams(location.search);
   const id = params?.get("id"); // job id
@@ -114,17 +113,14 @@ const ViewUpsertJob = (props: any) => {
   }
 
   const onFinish = async (values: any) => {
+    // console.log("🚀 ~ onFinish ~ values:", values);
     if (dataUpdate?._id) {
       //update
       const cp = values?.company?.value?.split("@#$");
       const job = {
         name: values.name,
         skills: values.skills,
-        company: {
-          _id: cp && cp.length > 0 ? cp[0] : "",
-          name: values.company.label,
-          logo: cp && cp.length > 1 ? cp[1] : "",
-        },
+        company: cp && cp.length > 0 ? cp[0] : "",
         location: values.location,
         salary: values.salary,
         quantity: values.quantity,
@@ -155,11 +151,12 @@ const ViewUpsertJob = (props: any) => {
       const job = {
         name: values.name,
         skills: values.skills,
-        company: {
-          _id: cp && cp.length > 0 ? cp[0] : "",
-          name: values.company.label,
-          logo: cp && cp.length > 1 ? cp[1] : "",
-        },
+        // company: {
+        //   _id: cp && cp.length > 0 ? cp[0] : "",
+        //   name: values.company.label,
+        //   logo: cp && cp.length > 1 ? cp[1] : "",
+        // },
+        company: cp && cp.length > 0 ? cp[0] : "",
         location: values.location,
         salary: values.salary,
         quantity: values.quantity,

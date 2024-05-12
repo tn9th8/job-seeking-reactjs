@@ -4,7 +4,7 @@ import { Pie } from "@ant-design/plots";
 
 const DemoPie = () => {
   const data = [
-    { type: "1a", value: 27 },
+    { type: "1a", value: 7 },
     { type: "2b", value: 25 },
     { type: "3c", value: 18 },
     { type: "4d", value: 15 },
