@@ -3,7 +3,7 @@ import CountUp from "react-countup";
 import Page from "../dashboard/Page";
 import DemoPie from "../dashboard/DemoPie";
 import { useEffect, useState } from "react";
-import { callFetchSummary } from "@/config/api";
+import { callFetchPie, callFetchSummary } from "@/config/api";
 
 const DashboardPage = () => {
   const [dataCardDashBoard, setdataCardDashBoard] = useState<any>();
@@ -18,13 +18,17 @@ const DashboardPage = () => {
     }
   };
   const fetchDashBoardDataPie = async () => {
-    const res = await callFetchSummary();
+    const res = await callFetchPie();
     if (res && res.data) {
-      setdataPie(res.data);
+      const newData = res.data.map((item: any) => {
+        return { type: item.name, value: item.number };
+      });
+      setdataPie(newData);
     }
   };
   useEffect(() => {
     fetchDashBoardData();
+    fetchDashBoardDataPie();
     return () => {};
   }, []);
 
@@ -62,7 +66,7 @@ const DashboardPage = () => {
           <Page />
         </Col>
         <Col>
-          <DemoPie />
+          <DemoPie data={dataPie} />
         </Col>
       </Row>
     </Row>

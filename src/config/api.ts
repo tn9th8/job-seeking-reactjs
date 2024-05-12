@@ -267,3 +267,6 @@ Module Resume
 export const callFetchSummary = () => {
     return axios.get('/api/v1/dashboard/jobs');
 }
+export const callFetchPie = () => {
+    return axios.get('/api/v1/dashboard/skills');
+}
