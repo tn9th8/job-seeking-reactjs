@@ -39,63 +39,82 @@ const SearchClient = (props: any) => {
   };
 
   return (
-    <ProForm
-      form={form}
-      onFinish={onFinish}
-      submitter={{
-        render: () => <></>,
+    <div
+      style={{
+        background:
+          "linear-gradient(90deg, rgba(0,0,0,1) 35%, rgba(121,9,9,1) 75%, rgba(255,0,0,1) 100%)",
+        padding: "120px",
+        marginLeft: "-234px",
+        marginRight: "-234px",
+        marginTop: "-16px",
       }}
     >
-      <Row gutter={[20, 20]}>
-        <Col span={24}>
-          <h2>Việc Làm IT Cho Developer "Chất"</h2>
-        </Col>
-        <Col span={24} md={16}>
-          <ProForm.Item name="skills">
-            <Select
-              mode="multiple"
-              allowClear
-              showArrow={false}
-              style={{ width: "100%" }}
-              placeholder={
-                <>
-                  <MonitorOutlined /> Tìm theo kỹ năng...
-                </>
-              }
-              optionLabelProp="label"
-              options={listSkill}
-            />
-          </ProForm.Item>
-        </Col>
-        <Col span={12} md={4}>
-          <ProForm.Item name="location">
-            <Select
-              mode="multiple"
-              allowClear
-              showArrow={false}
-              style={{ width: "100%" }}
-              placeholder={
-                <>
-                  <EnvironmentOutlined /> Địa điểm...
-                </>
-              }
-              optionLabelProp="label"
-              options={optionsLocations}
-            />
-          </ProForm.Item>
-        </Col>
-        <Col span={12} md={4}>
-          <Button
-            type="primary"
-            onClick={() => {
-              form.submit();
-            }}
-          >
-            Search
-          </Button>
-        </Col>
-      </Row>
-    </ProForm>
+      <ProForm
+        form={form}
+        onFinish={onFinish}
+        submitter={{
+          render: () => <></>,
+        }}
+      >
+        <Row gutter={[20, 20]}>
+          <Col span={24}>
+            <h2 style={{ fontSize: "28px", color: "white" }}>
+              Việc Làm IT Cho Developer "Chất"
+            </h2>
+          </Col>
+          <Col span={24} md={16}>
+            <ProForm.Item name="skills">
+              <Select
+                mode="multiple"
+                allowClear
+                showArrow={false}
+                style={{ width: "100%", height: "65px", fontSize: "20px" }}
+                placeholder={
+                  <>
+                    <MonitorOutlined /> Tìm theo kỹ năng...
+                  </>
+                }
+                optionLabelProp="label"
+                options={listSkill}
+              />
+            </ProForm.Item>
+          </Col>
+          <Col span={12} md={4}>
+            <ProForm.Item name="location">
+              <Select
+                mode="multiple"
+                allowClear
+                showArrow={false}
+                style={{ width: "100%", height: "65px", fontSize: "20px" }}
+                placeholder={
+                  <>
+                    <EnvironmentOutlined /> Địa điểm...
+                  </>
+                }
+                optionLabelProp="label"
+                options={optionsLocations}
+              />
+            </ProForm.Item>
+          </Col>
+          <Col span={12} md={4}>
+            <Button
+              type="primary"
+              style={{
+                width: "180px",
+                height: "65px",
+                backgroundColor: "#ff0000",
+                fontSize: "20px",
+              }}
+              onClick={() => {
+                form.submit();
+              }}
+            >
+              <MonitorOutlined /> Tìm kiếm
+            </Button>
+          </Col>
+        </Row>
+      </ProForm>
+    </div>
   );
 };
 export default SearchClient;

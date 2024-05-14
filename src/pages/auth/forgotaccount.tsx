@@ -14,7 +14,7 @@ import { callForgotPassword, callRegister } from "config/api";
 import styles from "styles/auth.module.scss";
 import { IUser } from "@/types/backend";
 const { Option } = Select;
-
+import video_bg from "../../../public/video_bg.mp4";
 const ForgotAccountPage = () => {
   const navigate = useNavigate();
   const [isSubmit, setIsSubmit] = useState(false);
@@ -51,11 +51,30 @@ const ForgotAccountPage = () => {
 
   return (
     <div className={styles["register-page"]}>
+      <video
+        autoPlay
+        loop
+        muted
+        style={{
+          position: "absolute",
+          zIndex: "-1",
+          top: "0",
+          left: "0",
+          width: "100%",
+          height: "100vh",
+          objectFit: "cover",
+        }}
+      >
+        <source src={video_bg} type="video/mp4" />
+      </video>
       <main className={styles.main}>
         <div className={styles.container}>
           <section className={styles.wrapper}>
             <div className={styles.heading}>
-              <h2 className={`${styles.text} ${styles["text-large"]}`}>
+              <h2
+                className={`${styles.text} ${styles["text-large"]}`}
+                style={{ textAlign: "center" }}
+              >
                 {" "}
                 Quên mật khẩu{" "}
               </h2>
@@ -69,7 +88,17 @@ const ForgotAccountPage = () => {
             >
               <Form.Item
                 labelCol={{ span: 24 }} //whole column
-                label="Email"
+                label={
+                  <span
+                    style={{
+                      color: "#ffffff",
+                      fontSize: "16px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Email
+                  </span>
+                }
                 name="email"
                 rules={[
                   { required: true, message: "Email không được để trống!" },
@@ -81,12 +110,17 @@ const ForgotAccountPage = () => {
               <Form.Item
               // wrapperCol={{ offset: 6, span: 16 }}
               >
-                <Button type="primary" htmlType="submit" loading={isSubmit}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  loading={isSubmit}
+                  style={{ float: "right" }}
+                >
                   Quên mật khẩu
                 </Button>
               </Form.Item>
-              <Divider> Or </Divider>
-              <p className="text text-normal">
+              <Divider style={{ color: "white" }}> Or </Divider>
+              <p className="text text-normal" style={{ color: "white" }}>
                 {" "}
                 Đã có tài khoản ?
                 <span>

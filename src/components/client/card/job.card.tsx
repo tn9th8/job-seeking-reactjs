@@ -31,7 +31,8 @@ const JobCard = (props: IProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [current, setCurrent] = useState(1);
-  const [pageSize, setPageSize] = useState(6);
+  const [pageSize, setPageSize] = useState(4);
+
   const [total, setTotal] = useState(0);
   const [filter, setFilter] = useState("");
   const [sortQuery, setSortQuery] = useState("sort=-updatedAt");
@@ -45,21 +46,21 @@ const JobCard = (props: IProps) => {
   const fetchJob = async () => {
     setIsLoading(true);
     let query = `current=${current}&pageSize=${pageSize}`;
-    if (filter) {
-      query += `&${filter}`;
-    }
-    if (sortQuery) {
-      query += `&${sortQuery}`;
-    }
+    // if (filter) {
+    //   query += `&${filter}`;
+    // }
+    // if (sortQuery) {
+    //   query += `&${sortQuery}`;
+    // }
 
-    if (location?.length && location.length > 0) {
-      query += `&location=`;
-      let Query = ``;
-      location.forEach((s) => {
-        Query += s + ",";
-      });
-      query += Query;
-    }
+    // if (location?.length && location.length > 0) {
+    //   query += `&location=`;
+    //   let Query = ``;
+    //   location.forEach((s) => {
+    //     Query += s + ",";
+    //   });
+    //   query += Query;
+    // }
     let res;
     if (skill && skill?.length > 0) {
       res = await callFetchJobClient(query, { skills: skill });
@@ -69,6 +70,7 @@ const JobCard = (props: IProps) => {
     if (res && res.data) {
       setDisplayJob(res.data.result);
       setTotal(res.data.meta.total);
+
     }
     setIsLoading(false);
   };
@@ -81,7 +83,7 @@ const JobCard = (props: IProps) => {
       setCurrent(pagination.current);
     }
     if (pagination && pagination.pageSize !== pageSize) {
-      setPageSize(pagination.pageSize);
+      setPageSize(pageSize);
       setCurrent(1);
     }
   };

@@ -43,6 +43,7 @@ const CompanyCard = (props: IProps) => {
       setDisplayCompany(res.data.result);
       setTotal(res.data.meta.total);
     }
+
     setIsLoading(false);
   };
 

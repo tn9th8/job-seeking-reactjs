@@ -113,7 +113,6 @@ const ViewUpsertJob = (props: any) => {
   }
 
   const onFinish = async (values: any) => {
-    // console.log("🚀 ~ onFinish ~ values:", values);
     if (dataUpdate?._id) {
       //update
       const cp = values?.company?.value?.split("@#$");

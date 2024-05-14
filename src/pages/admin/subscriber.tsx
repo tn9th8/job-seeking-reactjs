@@ -54,9 +54,7 @@ const SubscriberPage = () => {
             href="#"
             onClick={() => {
               setOpenViewDetail(true);
-              //   console.log("🚀 ~ UserPage ~ record:", record);
               setDataInit(record);
-              // console.log("🚀 ~ UserPage ~ dataInit:", dataInit);
             }}
           >
             {record._id}

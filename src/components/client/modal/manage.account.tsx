@@ -382,7 +382,7 @@ const ManageAccount = (props: IProps) => {
   const { open, onClose } = props;
 
   const onChange = (key: string) => {
-    // console.log(key);
+
   };
 
   const items: TabsProps["items"] = [

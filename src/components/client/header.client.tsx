@@ -3,12 +3,21 @@ import {
   CodeOutlined,
   ContactsOutlined,
   DashOutlined,
+  HomeOutlined,
   LogoutOutlined,
   MenuFoldOutlined,
   RiseOutlined,
   TwitterOutlined,
 } from "@ant-design/icons";
-import { Avatar, Drawer, Dropdown, MenuProps, Space, message } from "antd";
+import {
+  Avatar,
+  Drawer,
+  Dropdown,
+  Image,
+  MenuProps,
+  Space,
+  message,
+} from "antd";
 import { Menu, ConfigProvider } from "antd";
 import styles from "@/styles/client.module.scss";
 import { isMobile } from "react-device-detect";
@@ -20,6 +29,7 @@ import { callLogout } from "@/config/api";
 import { setLogoutAction } from "@/redux/slice/accountSlide";
 import ManageAccount from "./modal/manage.account";
 import vi_VN from "antd/locale/vi_VN";
+import Logo from "../../../public/Logo.png";
 
 const Header = (props: any) => {
   const navigate = useNavigate();
@@ -42,19 +52,37 @@ const Header = (props: any) => {
 
   const items: MenuProps["items"] = [
     {
-      label: <Link to={"/"}>Trang Chủ</Link>,
+      label: (
+        <Link to={"/"} style={{ fontSize: "20px", fontFamily: "sans-serif" }}>
+          Trang Chủ
+        </Link>
+      ),
       key: "/",
-      icon: <TwitterOutlined />,
+      icon: <HomeOutlined style={{ fontSize: "20px" }} />,
     },
     {
-      label: <Link to={"/job"}>Việc Làm IT</Link>,
+      label: (
+        <Link
+          to={"/job"}
+          style={{ fontSize: "20px", fontFamily: "sans-serif" }}
+        >
+          Việc Làm IT
+        </Link>
+      ),
       key: "/job",
-      icon: <CodeOutlined />,
+      icon: <CodeOutlined style={{ fontSize: "20px" }} />,
     },
     {
-      label: <Link to={"/company"}>Top Công ty IT</Link>,
+      label: (
+        <Link
+          to={"/company"}
+          style={{ fontSize: "20px", fontFamily: "sans-serif" }}
+        >
+          Top Công ty IT
+        </Link>
+      ),
       key: "/company",
-      icon: <RiseOutlined />,
+      icon: <RiseOutlined style={{ fontSize: "20px" }} />,
     },
   ];
 
@@ -99,7 +127,6 @@ const Header = (props: any) => {
       icon: <LogoutOutlined />,
     },
   ];
-
   const itemsMobiles = [...items, ...itemsDropdown];
 
   return (
@@ -109,7 +136,21 @@ const Header = (props: any) => {
           {!isMobile ? (
             <div style={{ display: "flex", gap: 30 }}>
               <div className={styles["brand"]}>
-                <FaReact onClick={() => navigate("/")} title="Hỏi Dân IT" />
+                {/* <img
+                  src={Logo}
+                  alt="Newsletter"
+                  style={{
+                    width: "150px",
+                    height: "auto",
+                    marginBottom: "8px",
+                  }}
+                /> */}
+                {/* <FaReact onClick={() => navigate("/")} title="Nhóm 16" /> */}
+                <Image
+                  width={105}
+                  src={Logo}
+                  style={{ marginLeft: "-12px", marginTop: "12px" }}
+                />
               </div>
               <div className={styles["top-menu"]}>
                 <ConfigProvider
@@ -117,7 +158,7 @@ const Header = (props: any) => {
                   theme={{
                     token: {
                       colorPrimary: "#fff",
-                      colorBgContainer: "#222831",
+                      colorBgContainer: "#FFFFFF00",
                       colorText: "#a7a7a7",
                     },
                   }}
@@ -132,7 +173,12 @@ const Header = (props: any) => {
                 </ConfigProvider>
                 <div className={styles["extra"]}>
                   {isAuthenticated === false ? (
-                    <Link to={"/login"}>Đăng Nhập</Link>
+                    <Link
+                      to={"/login"}
+                      style={{ fontSize: "20px", fontFamily: "sans-serif" }}
+                    >
+                      Đăng Nhập/Đăng Ký
+                    </Link>
                   ) : (
                     <Dropdown
                       menu={{ items: itemsDropdown }}

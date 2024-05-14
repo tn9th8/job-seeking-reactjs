@@ -45,7 +45,6 @@ const ViewDetailResume = (props: IProps) => {
 
     setIsSubmit(false);
   };
-
   useEffect(() => {
     if (dataInit) {
       form.setFieldValue("status", dataInit.status);
@@ -101,6 +100,16 @@ const ViewDetailResume = (props: IProps) => {
           </Descriptions.Item>
           <Descriptions.Item label="Tên Công Ty">
             {dataInit?.companyId?.name}
+          </Descriptions.Item>
+          <Descriptions.Item label="Chi tiết CV" span={2}>
+            <a
+              href={`${import.meta.env.VITE_BACKEND_URL}/images/resume/${
+                dataInit?.url
+              }`}
+              target="_blank"
+            >
+              Chi tiết
+            </a>
           </Descriptions.Item>
           <Descriptions.Item label="Ngày tạo">
             {dataInit && dataInit.createdAt

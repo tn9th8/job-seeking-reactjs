@@ -10,8 +10,6 @@ interface IProps {
 }
 const ViewDetailSubscriber = (props: IProps) => {
   const { open, dataInit, onClose, setDataInit } = props;
-  // console.log("🚀 ~ ViewDetailSubscriber ~ dataInit:", dataInit);
-
   return (
     <>
       <Drawer
