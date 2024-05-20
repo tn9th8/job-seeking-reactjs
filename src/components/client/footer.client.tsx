@@ -1,228 +1,345 @@
 import React from "react";
-import Logo from "../../../public/Logo.png";
+import styles from "styles/Footer.module.scss";
+import LinkedInLogo from "../../../public/in.png";
 import {
-  FaFacebook,
-  FaGithub,
-  FaInstagram,
-  FaTwitter,
-  FaTwitch,
+  FaLinkedinIn,
+  FaFacebookF,
+  FaYoutube,
+  FaPhoneAlt,
 } from "react-icons/fa";
-
-const section = [
-  {
-    title: "Về ITJob",
-    item: [
-      "Trang chủ",
-      "Việc Làm IT",
-      "Top Công Ty IT",
-      "Liên hệ",
-      "Câu hỏi thường gặp",
-    ],
-  },
-  {
-    title: "Chương trình",
-    item: ["Chuyện IT", "Cuộc thi viết"],
-  },
-  {
-    title: "Điều khoản chung",
-    item: [
-      "Quy định bảo mật",
-      "Quy chế hoạt động",
-      "Giải quyết khiếu nại",
-      "Thỏa thuận sử dụng",
-      "Thông cáo báo chí",
-    ],
-  },
-  {
-    title: "Liên hệ để đăng tin tuyển dụng",
-    item: [
-      "Hồ Chí Minh: (+84) 977 460 519",
-      "Hà Nội: (+84) 983 131 351",
-      "Email: love@itjob.com",
-      "Gửi thông tin liên hệ",
-    ],
-  },
-];
-
-const items = [
-  {
-    name: "Facebook",
-    icon: FaFacebook,
-    link: "https://www.facebook.com/",
-  },
-  {
-    name: "Instagram",
-    icon: FaInstagram,
-    link: "https://www.instagram.com/",
-  },
-  {
-    name: "Twitter",
-    icon: FaTwitter,
-    link: "https://www.twitter.com/",
-  },
-  {
-    name: "Twitch",
-    icon: FaTwitch,
-    link: "https://www.twitch.com/",
-  },
-  {
-    name: "Github",
-    icon: FaGithub,
-    link: "https://www.github.com/",
-  },
-];
+import { CgMail } from "react-icons/cg";
+import { IoIosSend } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <>
+    <footer
+      className={`${styles["footer"]} ${styles["ipt-md-12"]} ${styles["position-relative"]}`}
+    >
       <div
-        style={{
-          width: "100%",
-          marginTop: "24px",
-          background:
-            "linear-gradient(90deg, rgba(0,0,0,1) 35%, rgba(121,9,9,1) 75%, rgba(255,0,0,1) 100%)",
-          color: "#D1D5DB",
-          padding: "24px 8px",
-          borderTopLeftRadius: "50px",
-        }}
+        className={`${styles["container-xxl"]} ${styles["p-0"]} ${styles["imb-12"]}`}
       >
         <div
-          style={{
-            maxWidth: "1240px",
-            margin: "auto 60px auto 60px",
-            display: "flex",
-            justifyContent: "flex-start",
-            borderBottom: "2px solid #4B5563",
-            padding: "8px 0",
-            marginLeft: "60px",
-          }}
+          className={`${styles["row"]} ${styles["d-flex"]} ${styles["justify-content-md-between"]} ${styles["justify-content-center"]} ${styles["m-0"]} ${styles["ipt-17"]} ${styles["ipt-md-0"]}`}
+          id="accordionFooter"
         >
-          {section.map((section, index) => (
-            <div
-              key={index}
-              style={{
-                flexBasis: "25%",
-                minWidth: "200px",
-                maxWidth: "300px",
-                marginRight: "10px",
-              }}
-            >
-              <h6
-                style={{
-                  fontWeight: "bold",
-                  textTransform: "uppercase",
-                  paddingTop: "8px",
-                  fontSize: "12px",
-                }}
+          <div className={'$styles["collg3"]'}>
+            <div className={'$styles["footer-logo"]'}>
+              <div
+                className={`${styles["footer-slogan"]} ${styles["mx-auto"]} ${styles["ipt-2"]} ${styles["text-md-start"]} ${styles["text-center"]}`}
               >
-                {section.title}
-              </h6>
-              <ul>
-                {section.item.map((item, i) => (
-                  <li
-                    key={i}
-                    style={{
-                      paddingTop: "8px",
-                      color: "#9CA3AF",
-                      cursor: "pointer",
-                    }}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-          <div
-            style={{
-              flexBasis: "25%",
-              minWidth: "200px",
-              maxWidth: "300px",
-              paddingTop: "8px",
-            }}
-          >
-            <img
-              src={Logo}
-              alt="Newsletter"
-              style={{ width: "150px", height: "auto", marginBottom: "8px" }}
-            />
-            <p style={{ paddingTop: "16px", paddingBottom: "8px" }}>
-              Ít nhưng mà chất.
-            </p>
-            <form
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                justifyContent: "flex-start",
-              }}
-            >
-              <input
-                type="email"
-                placeholder="Nhập địa chỉ email..."
-                style={{
-                  width: "100%",
-                  padding: "8px",
-                  marginRight: "8px",
-                  borderRadius: "4px",
-                  marginBottom: "8px",
-                }}
-              />
-              <button
-                style={{
-                  padding: "8px",
-                  marginBottom: "8px",
-                  cursor: "pointer",
-                  color: "#ffffff",
-                  borderRadius: "10px",
-                  background: "red",
-                }}
-              >
-                Đăng ký
-              </button>
-            </form>
-          </div>
-        </div>
-
-        {/* Copyright & Social Icons */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            maxWidth: "1240px",
-            margin: "auto",
-            padding: "16px 8px",
-            justifyContent: "space-between",
-            alignItems: "center",
-            color: "#9CA3AF",
-          }}
-        >
-          <p style={{ paddingBottom: "16px" }}>
-            2024 Nhóm 16. All rights reserved.
-          </p>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "300px",
-              paddingTop: "16px",
-              fontSize: "24px",
-            }}
-          >
-            {items.map((x, index) => {
-              const Icon = x.icon;
-              return (
-                <Icon
-                  key={index}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => window.open(x.link, "_blank")}
+                <img
+                  height="90"
+                  className={'$styles["logo-itviec"]'}
+                  alt="logo-itviec"
+                  src="./public/Logo.png"
                 />
-              );
-            })}
+                <p className={`${styles["normal-text"]} ${styles["pe-none"]}`}>
+                  Ít nhưng mà chất
+                </p>
+              </div>
+              <div
+                className={`${styles["footer-logo-icons"]} ${styles["d-flex"]} ${styles["justify-content-md-start"]} ${styles["justify-content-center"]} ${styles["imt-8"]}`}
+              >
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.linkedin.com/company/itviec/"
+                >
+                  <div
+                    className={`${styles["icon"]} ${styles["rounded-circle"]} ${styles["d-flex"]} ${styles["justify-content-center"]} ${styles["align-items-center"]} ${styles["ime-4"]}`}
+                  >
+                    <FaLinkedinIn />
+                  </div>
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.facebook.com/ITviec/"
+                >
+                  <div
+                    className={`${styles["icon"]} ${styles["rounded-circle"]} ${styles["d-flex"]} ${styles["justify-content-center"]} ${styles["align-items-center"]} ${styles["ime-4"]}`}
+                  >
+                    <FaFacebookF />
+                  </div>
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.youtube.com/itviec"
+                >
+                  <div
+                    className={`${styles["icon"]} ${styles["rounded-circle"]} ${styles["d-flex"]} ${styles["justify-content-center"]} ${styles["align-items-center"]}`}
+                  >
+                    <FaYoutube />
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className={`${styles["col-12"]} ${styles["col-lg-2"]} ${styles["ipx-5"]} ${styles["ipx-md-0"]}`}
+          >
+            <h4
+              aria-controls="about"
+              className={`${styles["footer-header"]} ${styles["text-silver-grey"]} ${styles["footer-accordion"]} ${styles["accordion-button"]} ${styles["collapsed"]} ${styles["bg-transparent"]}`}
+              data-bs-target="#about"
+              data-bs-toggle="collapse"
+            >
+              Về ITJob
+            </h4>
+            <div
+              className={`${styles["accordion-collapse"]} ${styles["collapse"]}`}
+              data-bs-parent="#accordionFooter"
+              id="about"
+            >
+              <div
+                className={`${styles["accordion-body"]} ${styles["d-flex"]} ${styles["flex-column"]} ${styles["small-text"]} ${styles["imx-md-0"]}`}
+              >
+                <span>
+                  <a data-controller="utm-tracking" href="/">
+                    Trang Chủ
+                  </a>
+                </span>
+                <span>
+                  <a
+                    target="_blank"
+                    rel="canonical"
+                    data-controller="utm-tracking"
+                    href="/"
+                  >
+                    Về ITjob.com
+                  </a>
+                </span>
+                <span>
+                  <a
+                    target="_blank"
+                    rel="canonical"
+                    data-controller="utm-tracking"
+                    href="/"
+                  >
+                    Dịch vụ gợi ý ứng viên
+                  </a>
+                </span>
+                <span>
+                  <a
+                    target="_blank"
+                    rel="canonical"
+                    data-controller="utm-tracking"
+                    href="/"
+                  >
+                    Liên Hệ
+                  </a>
+                </span>
+                <span>
+                  <a data-controller="utm-tracking" href="/job">
+                    Việc Làm IT
+                  </a>
+                </span>
+                <span>
+                  <a
+                    target="_blank"
+                    rel="canonical"
+                    href="https://itviec.com/blog/faq-cac-cau-hoi-thuong-gap/"
+                  >
+                    Câu hỏi thường gặp
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-12 col-lg-2 ipx-5 ipx-md-0">
+            <h4
+              aria-controls="campaign"
+              className={`${styles["footer-header"]} ${styles["text-silver-grey"]} ${styles["footer-accordion"]} ${styles["accordion-button"]} ${styles["collapsed"]} ${styles["bg-transparent"]}`}
+              data-bs-target="#campaign"
+              data-bs-toggle="collapse"
+            >
+              Chương trình
+            </h4>
+            <div
+              className={`${styles["accordion-collapse"]} ${styles["collapse"]}`}
+              data-bs-parent="#accordionFooter"
+              id="campaign"
+            >
+              <div
+                className={`${styles["accordion-body"]} ${styles["d-flex"]} ${styles["flex-column"]} ${styles["small-text"]} ${styles["imx-md-0"]}`}
+              >
+                <span>
+                  <a target="_blank" data-controller="utm-tracking" href="/">
+                    Chuyện IT
+                  </a>
+                </span>
+                <span>
+                  <a
+                    target="_blank"
+                    rel="canonical"
+                    data-controller="utm-tracking"
+                    href="/cuoc-thi-viet"
+                  >
+                    Cuộc thi viết
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className={`${styles["col-12"]} ${styles["col-lg-2"]} ${styles["ipx-5"]} ${styles["ipx-md-0"]}`}
+          >
+            <h4
+              aria-controls="policy"
+              className={`${styles["footer-header"]} ${styles["text-silver-grey"]} ${styles["footer-accordion"]} ${styles["accordion-button"]} ${styles["collapsed"]} ${styles["bg-transparent"]}`}
+              data-bs-target="#policy"
+              data-bs-toggle="collapse"
+            >
+              Điều khoản chung
+            </h4>
+            <div
+              className={`${styles["accordion-collapse"]} ${styles["collapse"]}`}
+              data-bs-parent="#accordionFooter"
+              id="policy"
+            >
+              <div
+                className={`${styles["accordion-body"]} ${styles["d-flex"]} ${styles["flex-column"]} ${styles["small-text"]} ${styles["imx-md-0"]}`}
+              >
+                <span>
+                  <a
+                    target="_blank"
+                    href="https://itviec.com/blog/chinh-sach-bao-mat/"
+                  >
+                    Quy định bảo mật
+                  </a>
+                </span>
+                <span>
+                  <a
+                    target="_blank"
+                    href="https://itviec.com/blog/quy-che-hoat-dong-cua-itviec/"
+                  >
+                    Quy chế hoạt động
+                  </a>
+                </span>
+                <span>
+                  <a
+                    target="_blank"
+                    href="https://itviec.com/blog/chinh-sach-giai-quyet-khieu-nai/"
+                  >
+                    Giải quyết khiếu nại
+                  </a>
+                </span>
+                <span>
+                  <a
+                    target="_blank"
+                    href="https://itviec.com/blog/terms-conditions-vn/"
+                  >
+                    Thoả thuận sử dụng
+                  </a>
+                </span>
+                <span>
+                  <a
+                    target="_blank"
+                    rel="canonical"
+                    href="https://itviec.com/blog/press/"
+                  >
+                    Thông cáo báo chí
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className={`${styles["col-12"]} ${styles["collg3"]} ${styles["p-0"]} `}
+          >
+            <h4
+              className={`${styles["footer-header"]} ${styles["imx-md-0"]} ${styles["imx-5"]} ${styles["text-silver-grey"]} ${styles["ipy-4"]} ${styles["pe-none"]}`}
+            >
+              Liên hệ để đăng tin tuyển dụng tại:
+            </h4>
+            <div
+              className={`${styles["d-flex"]} ${styles["flex-column"]} ${styles["imx-md-0"]} ${styles["imx-5"]} ${styles["small-text"]} ${styles["text-dark-grey"]}`}
+            >
+              <div
+                className={`${styles["d-flex"]} ${styles["align-items-center"]} ${styles["ipb-3"]} ${styles["pe-none"]}`}
+              >
+                <svg
+                  className={`${styles["feather-icon"]} ${styles["icon-sm"]}`}
+                >
+                  <FaPhoneAlt />
+                </svg>
+                <p className={`${styles["ims-2"]}`}>
+                  Hồ Chí Minh: (+84) 977 460 519
+                </p>
+              </div>
+              <div
+                className={`${styles["d-flex"]} ${styles["align-items-center"]} ${styles["ipb-3"]} ${styles["pe-none"]}`}
+              >
+                <svg
+                  className={`${styles["feather-icon"]} ${styles["icon-sm"]}`}
+                >
+                  <FaPhoneAlt />
+                </svg>
+                <p className={`${styles["ims-2"]}`}>
+                  Hà Nội: (+84) 983 131 351
+                </p>
+              </div>
+              <div
+                className={`${styles["d-flex"]} ${styles["align-items-center"]} ${styles["ipb-3"]} ${styles["pe-none"]}`}
+              >
+                <svg
+                  className={`${styles["feather-icon"]} ${styles["icon-sm"]}`}
+                >
+                  <CgMail />
+                </svg>
+                <p className={`${styles["ims-2"]}`}>Email: love@itjob.com</p>
+              </div>
+              <div
+                className={`${styles["d-flex"]} ${styles["align-items-center"]} ${styles["ipb-3"]}`}
+              >
+                <svg
+                  className={`${styles["feather-icon"]} ${styles["icon-sm"]}`}
+                >
+                  <IoIosSend />
+                </svg>
+                <p className={`${styles["ims-2"]}`}>
+                  <a target="_blank" href="/contact-form">
+                    Gửi thông tin liên hệ
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </>
+
+      <hr className={`${styles["my-0"]} ${styles["opacity-25"]}`} />
+
+      <div
+        className={`${styles["container-xxl"]} ${styles["p-0"]} ${styles["ipy-5"]} ${styles["d-flex"]} ${styles["justify-content-center"]} ${styles["footer-copyright"]}`}
+      >
+        <p
+          className={`${styles["normal-text"]} ${styles["tiny-text"]} ${styles["text-dark-grey"]} ${styles["ipe-4"]}`}
+        >
+          Copyright © IT JOB JSC
+        </p>
+        <p className={styles["footer-copyright-line"]}></p>
+        <p
+          className={`${styles["normal-text"]} ${styles["tiny-text"]} ${styles["text-dark-grey"]} ${styles["ips-4"]}`}
+        >
+          MST: 0312192258
+        </p>
+      </div>
+
+      <div
+        className={`${styles["footer-image"]} ${styles["position-absolute"]}`}
+      >
+        <img
+          src="https://itviec.com/assets/footer-image-35f866330436404820ee462153a6b32edebdbdd90869eedacf2205b45fcc9f4a.svg"
+          alt="Footer Decorative Image"
+        />
+      </div>
+    </footer>
   );
 };
 

@@ -14,6 +14,7 @@ import LayoutAdmin from "components/admin/layout.admin";
 import ProtectedRoute from "components/share/protected-route.ts";
 import Header from "components/client/header.client";
 import Footer from "components/client/footer.client";
+
 import HomePage from "pages/home";
 import styles from "styles/app.module.scss";
 import DashboardPage from "./pages/admin/dashboard";
@@ -51,6 +52,7 @@ const LayoutClient = () => {
       <div className={styles["content-app"]}>
         <Outlet context={[searchTerm, setSearchTerm]} />
       </div>
+ 
       <Footer />
     </div>
   );
@@ -62,8 +64,8 @@ export default function App() {
 
   useEffect(() => {
     if (
-      window.location.pathname === "/job-seeking-reactjs/login" ||
-      window.location.pathname === "/job-seeking-reactjs/register"
+      window.location.pathname === "/login" ||
+      window.location.pathname === "/register"
     )
       return;
     dispatch(fetchAccount());
@@ -71,7 +73,7 @@ export default function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/job-seeking-reactjs/",
+      path: "/",
       element: (
         <LayoutApp>
           <LayoutClient />
@@ -80,24 +82,15 @@ export default function App() {
       errorElement: <NotFound />,
       children: [
         { index: true, element: <HomePage /> },
-        { path: "/job-seeking-reactjs/job", element: <ClientJobPage /> },
-        {
-          path: "/job-seeking-reactjs/job/:id",
-          element: <ClientJobDetailPage />,
-        },
-        {
-          path: "/job-seeking-reactjs/company",
-          element: <ClientCompanyPage />,
-        },
-        {
-          path: "/job-seeking-reactjs/company/:id",
-          element: <ClientCompanyDetailPage />,
-        },
+        { path: "job", element: <ClientJobPage /> },
+        { path: "job/:id", element: <ClientJobDetailPage /> },
+        { path: "company", element: <ClientCompanyPage /> },
+        { path: "company/:id", element: <ClientCompanyDetailPage /> },
       ],
     },
 
     {
-      path: "/job-seeking-reactjs/admin",
+      path: "/admin",
       element: (
         <LayoutApp>
           <LayoutAdmin />{" "}
@@ -197,16 +190,16 @@ export default function App() {
     },
 
     {
-      path: "/job-seeking-reactjs/login",
+      path: "/login",
       element: <LoginPage />,
     },
 
     {
-      path: "/job-seeking-reactjs/register",
+      path: "/register",
       element: <RegisterPage />,
     },
     {
-      path: "/job-seeking-reactjs/forgotaccount",
+      path: "/forgotaccount",
       element: <ForgotAccountPage />,
     },
   ]);

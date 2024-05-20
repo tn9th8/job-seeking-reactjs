@@ -137,7 +137,7 @@ const ViewUpsertJob = (props: any) => {
       const res = await callUpdateJob(job, dataUpdate._id);
       if (res.data) {
         message.success("Cập nhật job thành công");
-        navigate("/job-seeking-reactjs/admin/job");
+        navigate("/admin/job");
       } else {
         notification.error({
           message: "Có lỗi xảy ra",
@@ -169,7 +169,7 @@ const ViewUpsertJob = (props: any) => {
       const res = await callCreateJob(job);
       if (res.data) {
         message.success("Tạo mới job thành công");
-        navigate("/job-seeking-reactjs/admin/job");
+        navigate("/admin/job");
       } else {
         notification.error({
           message: "Có lỗi xảy ra",
@@ -186,9 +186,7 @@ const ViewUpsertJob = (props: any) => {
           separator=">"
           items={[
             {
-              title: (
-                <Link to="/job-seeking-reactjs/admin/job">Manage Job</Link>
-              ),
+              title: <Link to="/admin/job">Manage Job</Link>,
             },
             {
               title: "Upsert Job",
@@ -208,7 +206,7 @@ const ViewUpsertJob = (props: any) => {
                   <>{dataUpdate?._id ? "Cập nhật Job" : "Tạo mới Job"}</>
                 ),
               },
-              onReset: () => navigate("/job-seeking-reactjs/admin/job"),
+              onReset: () => navigate("/admin/job"),
               render: (_: any, dom: any) => (
                 <FooterToolbar>{dom}</FooterToolbar>
               ),

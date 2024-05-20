@@ -34,7 +34,7 @@ const RegisterPage = () => {
     setIsSubmit(false);
     if (res?.data?._id) {
       message.success("Đăng ký tài khoản thành công!");
-      navigate("/job-seeking-reactjs/login");
+      navigate("/login");
     } else {
       notification.error({
         message: "Có lỗi xảy ra",
@@ -243,7 +243,7 @@ const RegisterPage = () => {
                 {" "}
                 Đã có tài khoản ?
                 <span>
-                  <Link to="/job-seeking-reactjs/login"> Đăng Nhập </Link>
+                  <Link to="/login"> Đăng Nhập </Link>
                 </span>
               </p>
             </Form>

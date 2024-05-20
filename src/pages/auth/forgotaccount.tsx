@@ -36,7 +36,7 @@ const ForgotAccountPage = () => {
       message.success(
         "Thay đổi mật khẩu thành công. Vui lòng đăng nhập Email để biết mật khẩu!"
       );
-      navigate("/job-seeking-reactjs/login");
+      navigate("/login");
     } else {
       notification.error({
         message: "Có lỗi xảy ra",
@@ -124,7 +124,7 @@ const ForgotAccountPage = () => {
                 {" "}
                 Đã có tài khoản ?
                 <span>
-                  <Link to="/job-seeking-reactjs/login"> Đăng Nhập </Link>
+                  <Link to="/login"> Đăng Nhập </Link>
                 </span>
               </p>
             </Form>

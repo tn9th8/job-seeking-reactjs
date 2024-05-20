@@ -70,6 +70,7 @@ const JobCard = (props: IProps) => {
     if (res && res.data) {
       setDisplayJob(res.data.result);
       setTotal(res.data.meta.total);
+
     }
     setIsLoading(false);
   };
@@ -89,12 +90,12 @@ const JobCard = (props: IProps) => {
 
   const handleViewDetailJob = (item: IJob) => {
     const slug = convertSlug(item.name);
-    navigate(`/job-seeking-reactjs/job/${slug}?id=${item._id}`);
+    navigate(`/job/${slug}?id=${item._id}`);
   };
 
   return (
     <div>
-      <div className={`${styles["card-job-section"]}`}>
+      <div className={`${styles["card-job-section"]} ${styles["top-employers-container"]}`}>
         <div className={`${styles["job-content"]}`}>
           <Spin spinning={isLoading} tip="Loading...">
             <Row gutter={[20, 20]}>
@@ -104,11 +105,9 @@ const JobCard = (props: IProps) => {
                     isMobile ? styles["dflex-mobile"] : styles["dflex-pc"]
                   }
                 >
-                  <span className={styles["title"]}>Công Việc Mới Nhất</span>
+                  <span className={styles["title1"]}>Công Việc Mới Nhất</span>
 
-                  {!showPagination && (
-                    <Link to="/job-seeking-reactjs/job">Xem tất cả</Link>
-                  )}
+                  {!showPagination && <Link to="job">Xem tất cả</Link>}
                 </div>
               </Col>
 

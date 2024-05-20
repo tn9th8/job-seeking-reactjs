@@ -16,10 +16,9 @@ export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   return {
     plugins: [
-      react(),
+      react(), 
       // visualizer() as PluginOption
     ],
-    base: '/job-seeking-reactjs/',
     server: {
       port: parseInt(env.PORT)
     },

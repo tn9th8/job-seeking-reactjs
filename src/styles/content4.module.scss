@@ -1,0 +1,233 @@
+.feedback-container {
+     height: initial;
+ }
+
+ @media (min-width: 992px) {
+     .imt-lg-16 {
+         margin-top: 64px !important;
+     }
+ }
+
+ @media (min-width: 992px) {
+     .imb-lg-8 {
+         margin-bottom: 32px !important;
+     }
+ }
+
+ .imt-12 {
+     margin-top: 48px !important;
+ }
+
+ .imb-6 {
+     margin-bottom: 24px !important;
+ }
+
+ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+     line-height: 1.5;
+ }
+
+ h1, .h1 {
+     font-size: 28px;
+     font-weight: 700;
+ }
+
+ .text-center {
+     text-align: center !important;
+ }
+
+ .carousel {
+     position: relative;
+ }
+
+ .carousel-inner {
+     position: relative;
+     width: 100%;
+     overflow: hidden;
+ }
+
+ .carousel-item {
+     position: relative;
+     display: none;
+     float: left;
+     width: 100%;
+     margin-right: -100%;
+     backface-visibility: hidden;
+     transition: transform .6s ease-in-out;
+ }
+
+ .carousel-inner::after {
+     display: block;
+     clear: both;
+     content: "";
+ }
+
+ @media (min-width: 992px) {
+     .imt-lg-8 {
+         margin-top: 32px !important;
+     }
+ }
+
+ .align-items-center {
+     align-items: center !important;
+ }
+
+ .justify-content-center {
+     justify-content: center !important;
+ }
+
+ .d-flex {
+     display: flex !important;
+ }
+
+ .carousel-control-prev, .employer-landing-container .top-employers-container button.carousel-control-next {
+     width: 48px;
+     height: 48px;
+     border: 1px solid #dedede;
+     border-radius: 50%;
+     position: initial !important;
+     opacity: 1 !important;
+ }
+ button:not(:disabled), [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled) {
+     cursor: pointer;
+ }
+
+ .bg-white {
+     --i-bg-opacity: 1;
+     background-color: rgba(var(--i-white-rgb), var(--i-bg-opacity)) !important;
+ }
+
+
+ .p-4 {
+     padding: 1.5rem !important;
+ }
+
+ .carousel-control-prev, .carousel-control-next {
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     z-index: 1;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 15%;
+     padding: 0;
+     color: #fff;
+     text-align: center;
+     background: none;
+     border: 0;
+     opacity: .5;
+     transition: opacity .15s ease;
+ }
+
+ button, [type=button], [type=reset], [type=submit] {
+     -webkit-appearance: button;
+ }
+
+ button, select {
+     text-transform: none;
+ }
+
+ 
+
+input, button, select, optgroup, textarea {
+     margin: 0;
+     font-family: inherit;
+     font-size: inherit;
+     line-height: inherit;
+ }
+
+ .text-rich-grey {
+     color: #414042 !important;
+ }
+
+ .align-items-center {
+     align-items: center !important;
+ }
+
+ .d-flex {
+     display: flex !important;
+ }
+
+ .feather-icon.icon-xl {
+     width: 32px;
+     height: 32px;
+ }
+
+ .feather-icon {
+     stroke: currentColor;
+     stroke-width: 2;
+     stroke-linecap: round;
+     stroke-linejoin: round;
+     vertical-align: baseline;
+     fill: none;
+ }
+
+ .visually-hidden, .visually-hidden-focusable:not(:focus):not(:focus-within) {
+     position: absolute !important;
+     width: 1px !important;
+     height: 1px !important;
+     padding: 0 !important;
+     margin: -1px !important;
+     overflow: hidden !important;
+     clip: rect(0, 0, 0, 0) !important;
+     white-space: nowrap !important;
+     border: 0 !important;
+ }
+
+ .text-rich-grey {
+     color: #414042 !important;
+ }
+
+ .normal-text {
+     font-size: 16px;
+     font-weight: 400;
+ }
+
+ .normal-text {
+     font-size: 16px;
+     font-weight: 400;
+ }
+
+ .d-inline-flex {
+     display: inline-flex !important;
+ }
+
+ .text-rich-grey {
+     color: #414042 !important;
+ }
+
+ .align-items-center {
+     align-items: center !important;
+ }
+
+ .d-flex {
+     display: flex !important;
+ }
+
+ .feather-icon.icon-xl {
+     width: 32px;
+     height: 32px;
+ }
+
+ .feather-icon {
+     stroke: currentColor;
+     stroke-width: 2;
+     stroke-linecap: round;
+     stroke-linejoin: round;
+     vertical-align: baseline;
+     fill: none;
+ }
+
+ .visually-hidden, .visually-hidden-focusable:not(:focus):not(:focus-within) {
+     position: absolute !important;
+     width: 1px !important;
+     height: 1px !important;
+     padding: 0 !important;
+     margin: -1px !important;
+     overflow: hidden !important;
+     clip: rect(0, 0, 0, 0) !important;
+     white-space: nowrap !important;
+     border: 0 !important;
+ }
+
+ 
