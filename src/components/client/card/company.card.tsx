@@ -63,7 +63,7 @@ const CompanyCard = (props: IProps) => {
   const handleViewDetailJob = (item: ICompany) => {
     if (item.name) {
       const slug = convertSlug(item.name);
-      navigate(`/company/${slug}?id=${item._id}`);
+      navigate(`/job-seeking-reactjs/company/${slug}?id=${item._id}`);
     }
   };
 
@@ -79,7 +79,9 @@ const CompanyCard = (props: IProps) => {
                 }
               >
                 <span className={styles["title"]}>Nhà Tuyển Dụng Hàng Đầu</span>
-                {!showPagination && <Link to="company">Xem tất cả</Link>}
+                {!showPagination && (
+                  <Link to="/job-seeking-reactjs/company">Xem tất cả</Link>
+                )}
               </div>
             </Col>
 

@@ -44,7 +44,7 @@ const ApplyModal = (props: IProps) => {
 
     if (!isAuthenticated) {
       setIsModalOpen(false);
-      navigate(`/login?callback=${window.location.href}`);
+      navigate(`/job-seeking-reactjs/login?callback=${window.location.href}`);
     } else {
       //todo
       if (jobDetail) {
@@ -85,7 +85,6 @@ const ApplyModal = (props: IProps) => {
     },
     onChange(info) {
       if (info.file.status !== "uploading") {
-
       }
       if (info.file.status === "done") {
         message.success(`${info.file.name} file uploaded successfully`);

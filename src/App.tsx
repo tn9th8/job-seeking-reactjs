@@ -62,8 +62,8 @@ export default function App() {
 
   useEffect(() => {
     if (
-      window.location.pathname === "/login" ||
-      window.location.pathname === "/register"
+      window.location.pathname === "/job-seeking-reactjs/login" ||
+      window.location.pathname === "/job-seeking-reactjs/register"
     )
       return;
     dispatch(fetchAccount());
@@ -71,7 +71,7 @@ export default function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/job-seeking-reactjs/",
       element: (
         <LayoutApp>
           <LayoutClient />
@@ -80,15 +80,24 @@ export default function App() {
       errorElement: <NotFound />,
       children: [
         { index: true, element: <HomePage /> },
-        { path: "job", element: <ClientJobPage /> },
-        { path: "job/:id", element: <ClientJobDetailPage /> },
-        { path: "company", element: <ClientCompanyPage /> },
-        { path: "company/:id", element: <ClientCompanyDetailPage /> },
+        { path: "/job-seeking-reactjs/job", element: <ClientJobPage /> },
+        {
+          path: "/job-seeking-reactjs/job/:id",
+          element: <ClientJobDetailPage />,
+        },
+        {
+          path: "/job-seeking-reactjs/company",
+          element: <ClientCompanyPage />,
+        },
+        {
+          path: "/job-seeking-reactjs/company/:id",
+          element: <ClientCompanyDetailPage />,
+        },
       ],
     },
 
     {
-      path: "/admin",
+      path: "/job-seeking-reactjs/admin",
       element: (
         <LayoutApp>
           <LayoutAdmin />{" "}
@@ -188,16 +197,16 @@ export default function App() {
     },
 
     {
-      path: "/login",
+      path: "/job-seeking-reactjs/login",
       element: <LoginPage />,
     },
 
     {
-      path: "/register",
+      path: "/job-seeking-reactjs/register",
       element: <RegisterPage />,
     },
     {
-      path: "/forgotaccount",
+      path: "/job-seeking-reactjs/forgotaccount",
       element: <ForgotAccountPage />,
     },
   ]);

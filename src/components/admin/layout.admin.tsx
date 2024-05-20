@@ -90,15 +90,17 @@ const LayoutAdmin = () => {
 
       const full = [
         {
-          label: <Link to="/admin">Dashboard</Link>,
-          key: "/admin",
+          label: <Link to="/job-seeking-reactjs/admin">Dashboard</Link>,
+          key: "/job-seeking-reactjs/admin",
           icon: <AppstoreOutlined />,
         },
         ...(viewCompany
           ? [
               {
-                label: <Link to="/admin/company">Company</Link>,
-                key: "/admin/company",
+                label: (
+                  <Link to="/job-seeking-reactjs/admin/company">Company</Link>
+                ),
+                key: "/job-seeking-reactjs/admin/company",
                 icon: <BankOutlined />,
               },
             ]
@@ -107,8 +109,8 @@ const LayoutAdmin = () => {
         ...(viewUser
           ? [
               {
-                label: <Link to="/admin/user">User</Link>,
-                key: "/admin/user",
+                label: <Link to="/job-seeking-reactjs/admin/user">User</Link>,
+                key: "/job-seeking-reactjs/admin/user",
                 icon: <UserOutlined />,
               },
             ]
@@ -116,8 +118,8 @@ const LayoutAdmin = () => {
         ...(viewJob
           ? [
               {
-                label: <Link to="/admin/job">Job</Link>,
-                key: "/admin/job",
+                label: <Link to="/job-seeking-reactjs/admin/job">Job</Link>,
+                key: "/job-seeking-reactjs/admin/job",
                 icon: <ScheduleOutlined />,
               },
             ]
@@ -126,8 +128,10 @@ const LayoutAdmin = () => {
         ...(viewResume
           ? [
               {
-                label: <Link to="/admin/resume">Resume</Link>,
-                key: "/admin/resume",
+                label: (
+                  <Link to="/job-seeking-reactjs/admin/resume">Resume</Link>
+                ),
+                key: "/job-seeking-reactjs/admin/resume",
                 icon: <AliwangwangOutlined />,
               },
             ]
@@ -135,8 +139,8 @@ const LayoutAdmin = () => {
         ...(viewSkill
           ? [
               {
-                label: <Link to="/admin/skill">Skill</Link>,
-                key: "/admin/skill",
+                label: <Link to="/job-seeking-reactjs/admin/skill">Skill</Link>,
+                key: "/job-seeking-reactjs/admin/skill",
                 icon: <AuditOutlined />,
               },
             ]
@@ -144,8 +148,12 @@ const LayoutAdmin = () => {
         ...(viewRole
           ? [
               {
-                label: <Link to="/admin/subscriber">Subscriber</Link>,
-                key: "/admin/subscriber",
+                label: (
+                  <Link to="/job-seeking-reactjs/admin/subscriber">
+                    Subscriber
+                  </Link>
+                ),
+                key: "/job-seeking-reactjs/admin/subscriber",
                 icon: <PaperClipOutlined />,
               },
             ]
@@ -153,8 +161,12 @@ const LayoutAdmin = () => {
         ...(viewPermission
           ? [
               {
-                label: <Link to="/admin/permission">Permission</Link>,
-                key: "/admin/permission",
+                label: (
+                  <Link to="/job-seeking-reactjs/admin/permission">
+                    Permission
+                  </Link>
+                ),
+                key: "/job-seeking-reactjs/admin/permission",
                 icon: <ApiOutlined />,
               },
             ]
@@ -162,8 +174,8 @@ const LayoutAdmin = () => {
         ...(viewRole
           ? [
               {
-                label: <Link to="/admin/role">Role</Link>,
-                key: "/admin/role",
+                label: <Link to="/job-seeking-reactjs/admin/role">Role</Link>,
+                key: "/job-seeking-reactjs/admin/role",
                 icon: <ExceptionOutlined />,
               },
             ]
@@ -182,7 +194,7 @@ const LayoutAdmin = () => {
     if (res && res.data) {
       dispatch(setLogoutAction({}));
       message.success("Đăng xuất thành công");
-      navigate("/");
+      navigate("/job-seeking-reactjs/");
     }
   };
 
@@ -199,7 +211,7 @@ const LayoutAdmin = () => {
 
   const itemsDropdown = [
     {
-      label: <Link to={"/"}>Trang chủ</Link>,
+      label: <Link to={"/job-seeking-reactjs/"}>Trang chủ</Link>,
       key: "home",
     },
     {

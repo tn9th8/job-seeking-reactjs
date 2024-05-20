@@ -53,35 +53,38 @@ const Header = (props: any) => {
   const items: MenuProps["items"] = [
     {
       label: (
-        <Link to={"/"} style={{ fontSize: "20px", fontFamily: "sans-serif" }}>
+        <Link
+          to={"/job-seeking-reactjs"}
+          style={{ fontSize: "20px", fontFamily: "sans-serif" }}
+        >
           Trang Chủ
         </Link>
       ),
-      key: "/",
+      key: "/job-seeking-reactjs",
       icon: <HomeOutlined style={{ fontSize: "20px" }} />,
     },
     {
       label: (
         <Link
-          to={"/job"}
+          to={"/job-seeking-reactjs/job"}
           style={{ fontSize: "20px", fontFamily: "sans-serif" }}
         >
           Việc Làm IT
         </Link>
       ),
-      key: "/job",
+      key: "/job-seeking-reactjs/job",
       icon: <CodeOutlined style={{ fontSize: "20px" }} />,
     },
     {
       label: (
         <Link
-          to={"/company"}
+          to={"/job-seeking-reactjs/company"}
           style={{ fontSize: "20px", fontFamily: "sans-serif" }}
         >
           Top Công ty IT
         </Link>
       ),
-      key: "/company",
+      key: "/job-seeking-reactjs/company",
       icon: <RiseOutlined style={{ fontSize: "20px" }} />,
     },
   ];
@@ -95,7 +98,7 @@ const Header = (props: any) => {
     if (res && res.data) {
       dispatch(setLogoutAction({}));
       message.success("Đăng xuất thành công");
-      navigate("/");
+      navigate("/job-seeking-reactjs/");
     }
   };
 
@@ -113,7 +116,7 @@ const Header = (props: any) => {
       icon: <ContactsOutlined />,
     },
     {
-      label: <Link to={"/admin"}>Trang Quản Trị</Link>,
+      label: <Link to={"/job-seeking-reactjs/admin"}>Trang Quản Trị</Link>,
       key: "admin",
       icon: <DashOutlined />,
     },
@@ -174,7 +177,7 @@ const Header = (props: any) => {
                 <div className={styles["extra"]}>
                   {isAuthenticated === false ? (
                     <Link
-                      to={"/login"}
+                      to={"/job-seeking-reactjs/login"}
                       style={{ fontSize: "20px", fontFamily: "sans-serif" }}
                     >
                       Đăng Nhập/Đăng Ký

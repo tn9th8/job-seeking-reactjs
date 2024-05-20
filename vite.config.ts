@@ -19,7 +19,7 @@ export default defineConfig(({ command, mode }) => {
       react(),
       // visualizer() as PluginOption
     ],
-    base: '/',
+    base: '/job-seeking-reactjs/',
     server: {
       port: parseInt(env.PORT)
     },

@@ -70,7 +70,6 @@ const JobCard = (props: IProps) => {
     if (res && res.data) {
       setDisplayJob(res.data.result);
       setTotal(res.data.meta.total);
-
     }
     setIsLoading(false);
   };
@@ -90,7 +89,7 @@ const JobCard = (props: IProps) => {
 
   const handleViewDetailJob = (item: IJob) => {
     const slug = convertSlug(item.name);
-    navigate(`/job/${slug}?id=${item._id}`);
+    navigate(`/job-seeking-reactjs/job/${slug}?id=${item._id}`);
   };
 
   return (
@@ -107,7 +106,9 @@ const JobCard = (props: IProps) => {
                 >
                   <span className={styles["title"]}>Công Việc Mới Nhất</span>
 
-                  {!showPagination && <Link to="job">Xem tất cả</Link>}
+                  {!showPagination && (
+                    <Link to="/job-seeking-reactjs/job">Xem tất cả</Link>
+                  )}
                 </div>
               </Col>
 

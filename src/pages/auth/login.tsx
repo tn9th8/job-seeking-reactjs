@@ -23,7 +23,7 @@ const LoginPage = () => {
     //đã login => redirect to '/'
     if (isAuthenticated) {
       // navigate('/');
-      window.location.href = "/";
+      window.location.href = "/job-seeking-reactjs/";
     }
   }, []);
 
@@ -36,7 +36,7 @@ const LoginPage = () => {
       localStorage.setItem("access_token", res.data.access_token);
       dispatch(setUserLoginInfo(res.data.user));
       message.success("Đăng nhập tài khoản thành công!");
-      window.location.href = callback ? callback : "/";
+      window.location.href = callback ? callback : "/job-seeking-reactjs/";
     } else {
       notification.error({
         message: "Có lỗi xảy ra",
@@ -137,7 +137,10 @@ const LoginPage = () => {
                 }}
               >
                 <span style={{ display: "block" }}>
-                  <Link to="/forgotaccount"> Quên mật khẩu </Link>
+                  <Link to="/job-seeking-reactjs/forgotaccount">
+                    {" "}
+                    Quên mật khẩu{" "}
+                  </Link>
                 </span>
               </p>
               <Form.Item
@@ -156,7 +159,7 @@ const LoginPage = () => {
               <p className="text text-normal" style={{ color: "white" }}>
                 Chưa có tài khoản ?
                 <span>
-                  <Link to="/register"> Đăng Ký </Link>
+                  <Link to="/job-seeking-reactjs/register"> Đăng Ký </Link>
                 </span>
               </p>
             </Form>
