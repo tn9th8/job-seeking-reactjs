@@ -147,6 +147,7 @@ const ViewUpsertJob = (props: any) => {
     } else {
       //create
       const cp = values?.company?.value?.split("@#$");
+      console.log(values); //test
       const job = {
         name: values.name,
         skills: values.skills,

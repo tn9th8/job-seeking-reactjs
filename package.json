@@ -18,6 +18,9 @@
     "@ant-design/pro-components": "2.6.46",
     "@ant-design/pro-layout": "7.17.19",
     "@reduxjs/toolkit": "1.9.3",
+    "@testing-library/jest-dom": "5.16.4",
+    "@testing-library/react": "13.2.0",
+    "@testing-library/user-event": "13.5.0",
     "antd": "5.13.1",
     "async-mutex": "0.4.0",
     "axios": "1.6.5",
@@ -35,13 +38,11 @@
     "react-quill": "2.0.0",
     "react-redux": "8.0.5",
     "react-router-dom": "6.11.2",
+    "react-scripts": "5.0.1",
     "react-spinners": "0.13.8",
     "uuid": "9.0.0",
-    "@testing-library/jest-dom": "5.16.4",
-    "@testing-library/react": "13.2.0",
-    "@testing-library/user-event": "13.5.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "2.1.4"
+    "web-vitals": "2.1.4",
+    "xxxx": "^3.0.4"
   },
   "devDependencies": {
     "@types/lodash": "4.14.195",
