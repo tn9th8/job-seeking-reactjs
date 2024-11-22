@@ -39,10 +39,6 @@ import "react-quill/dist/quill.snow.css";
 import { CheckSquareOutlined } from "@ant-design/icons";
 import enUS from "antd/lib/locale/en_US";
 import dayjs from "dayjs";
-// import weekday from "dayjs/plugin/weekday";
-// import localeData from "dayjs/plugin/localeData";
-// dayjs.extend(weekday);
-// dayjs.extend(localeData);
 import { IJob } from "@/types/backend";
 import vi_VN from "antd/locale/vi_VN";
 const ViewUpsertJob = (props: any) => {
@@ -72,6 +68,8 @@ const ViewUpsertJob = (props: any) => {
             },
           ]);
 
+          console.log(res.data)
+
           form.setFieldsValue({
             ...res.data,
             company: {
@@ -80,6 +78,8 @@ const ViewUpsertJob = (props: any) => {
                 `${res.data.company?._id}@#$${res.data.company?.logo}` as string,
               key: res.data.company?._id,
             },
+            startDate: dayjs(res.data.startDate).format("DD/MM/YYYY"),
+            endDate: dayjs(res.data.endDate).format("DD/MM/YYYY"),
           });
         }
       }
@@ -329,33 +329,24 @@ const ViewUpsertJob = (props: any) => {
               )}
             </Row>
             <Row gutter={[20, 20]}>
-              <Col span={24} md={6}>
-                <ProFormDatePicker
+              <Col span={24} md={12}>
+                <ProFormText
                   label="Ngày bắt đầu"
                   name="startDate"
-                  normalize={(value) => value && dayjs(value, "DD/MM/YYYY")}
-                  fieldProps={{
-                    format: "DD/MM/YYYY",
-                  }}
                   rules={[
-                    { required: true, message: "Vui lòng chọn ngày cấp" },
+                    { required: true, message: "Vui lòng không bỏ trống" },
                   ]}
-                  placeholder="dd/mm/yyyy"
+                  placeholder="DD/MM/YYYY"
                 />
               </Col>
-              <Col span={24} md={6}>
-                <ProFormDatePicker
+              <Col span={24} md={12}>
+                <ProFormText
                   label="Ngày kết thúc"
                   name="endDate"
-                  normalize={(value) => value && dayjs(value, "DD/MM/YYYY")}
-                  fieldProps={{
-                    format: "DD/MM/YYYY",
-                  }}
-                  // width="auto"
                   rules={[
-                    { required: true, message: "Vui lòng chọn ngày cấp" },
+                    { required: true, message: "Vui lòng không bỏ trống" },
                   ]}
-                  placeholder="dd/mm/yyyy"
+                  placeholder="DD/MM/YYYY"
                 />
               </Col>
               <Col span={24} md={6}>

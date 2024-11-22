@@ -76,9 +76,10 @@ const ClientJobDetailPage = (props: any) => {
                 <Divider />
                 <div className={styles["skills"]}>
                   {jobDetail?.skills?.map((item, index) => {
+                    console.log('skill', item)
                     return (
                       <Tag key={`${index}-key`} color="gold">
-                        {listSkill[item]}
+                        {item}
                       </Tag>
                     );
                   })}

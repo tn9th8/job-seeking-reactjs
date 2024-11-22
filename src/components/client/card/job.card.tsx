@@ -62,9 +62,10 @@ const JobCard = (props: IProps) => {
     //   query += Query;
     // }
     let res;
-    if (skill && skill?.length > 0) {
-      res = await callFetchJobClient(query, { skills: skill });
-    } else {
+    if ((skill && skill?.length > 0) || (location && location?.length > 0)) {
+      res = await callFetchJobClient(query, { skills: skill, location });
+    } 
+    else {
       res = await callFetchJob(query);
     }
     if (res && res.data) {
