@@ -270,3 +270,7 @@ export const callFetchSummary = () => {
 export const callFetchPie = () => {
     return axios.get('/api/v1/dashboard/skills');
 }
+
+export const callFetchOpenJobList = () => {
+    return axios.get('/api/v1/dashboard/levels')
+}

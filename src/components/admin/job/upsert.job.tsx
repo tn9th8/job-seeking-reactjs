@@ -39,6 +39,10 @@ import "react-quill/dist/quill.snow.css";
 import { CheckSquareOutlined } from "@ant-design/icons";
 import enUS from "antd/lib/locale/en_US";
 import dayjs from "dayjs";
+// import weekday from "dayjs/plugin/weekday";
+// import localeData from "dayjs/plugin/localeData";
+// dayjs.extend(weekday);
+// dayjs.extend(localeData);
 import { IJob } from "@/types/backend";
 import vi_VN from "antd/locale/vi_VN";
 const ViewUpsertJob = (props: any) => {
